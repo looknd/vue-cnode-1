@@ -139,7 +139,7 @@ $pad: 10px;
 }
 
 .tag {
-	$font-tag: 14px;
+	$font-tag: 12px;
 	$h: 24px;
 	$br: 5px;
 	width: 40px !important;
