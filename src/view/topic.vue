@@ -1,12 +1,12 @@
 <template>
 	<cn-header></cn-header>
 	
-	<div id="page">
-		<h2 class="topic-title">针对于Nodejs的相关开发</h2>
+	<div id="topic-page" v-if="topic.title">
+		<h2 class="topic-title" v-text="topic.title"></h2>
 
 		<div class="section">
 			<div class="status">
-				<img :src="topic.author.avatar_url" class="avatar">
+				<img :src="topic.author.avatar_url" class="avatar" onerror="this.src='{{errorImg}}'">
 				<div class="detail">
 					<div>
 						<span class="tag" :class="topic.tab">
@@ -109,12 +109,12 @@
 </script>
 
 
-<style lang="sass" scoped>
+<style lang="sass">
 
 @import '../asset/scss/var.mod.scss';
 
 $pad: 10px;
-#page{
+#topic-page{
 	padding: $headerHeight+$pad $pad $pad $pad;
 	transition: all .3s ease;
 	background-color: #fff;

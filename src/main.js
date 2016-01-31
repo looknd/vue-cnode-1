@@ -26,10 +26,15 @@ new VueRouter()
 		name: 'topic',
 		component: require('./view/topic.vue')
 	},
+	'/about': {
+		name: 'about',
+		component: require('./view/about.vue'),
+		auth: true
+	},
 	'*': {
 		name: 'home',
 		component: require('./view/home.vue')
-	}
+	},
 	// '/add': {
 	// 	name: 'add',
 	// 	component: require('./view/add.vue')
@@ -37,14 +42,6 @@ new VueRouter()
 	// '/msg': {
 	// 	name: 'msg',
 	// 	component: require('./view/msg.vue')
-	// },
-	// '/about': {
-	// 	name: 'about',
-	// 	component: require('./view/about.vue')
-	// },
-	// '/login': {
-	// 	name: 'login',
-	// 	component: require('./view/login.vue')
 	// },
 	// '/user/:loginname': {
 	// 	name: 'user',
@@ -54,11 +51,25 @@ new VueRouter()
 })
 .beforeEach(transition => {
 	FastClick.attach(document.body);
-	transition.next();
 
 	$(document).on('click', () => {
 		store.isShowMenu = false;
-	})
+	}).on('touchmove', () => {
+		store.isShowMenu = false;
+	});
+
+	if(transition.to.auth) {
+		if(store.at) {
+			transition.next();
+		} else {
+			store.isShowLogin = true;
+			store.redirect = transition.to.path;
+			transition.abort();
+		}
+	} else {
+		transition.next();
+	}
+	// console.log(transition)
 })
 .afterEach(({to}) => {
 	if(to.name === 'list') {

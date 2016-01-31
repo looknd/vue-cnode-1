@@ -230,10 +230,6 @@
 		}
 	}
 
-	blockquote{
-		margin: 0;
-	}
-
 	ul, ol{
 		padding: 0;
 		margin-top: 0;
@@ -349,7 +345,8 @@
 	}
 
 	blockquote{
-		padding: 0 15px;
+		margin: 0;
+		padding: 0 10px;
 		color: #777;
 		border-left: 4px solid #ddd;
 

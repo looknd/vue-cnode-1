@@ -72,7 +72,8 @@ module.exports = {
 			ERRORIMG: JSON.stringify('http://img4.imgtn.bdimg.com/it/u=2941524455,810842393&fm=206&gp=0.jpg'),
 			LIST: JSON.stringify('https://cnodejs.org/api/v1/topics'),
 			TOPIC: JSON.stringify('https://cnodejs.org/api/v1/topic'),
-			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job'])
+			AT: JSON.stringify('https://cnodejs.org/api/v1/accesstoken'),
+			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
 		})
 	],
 	resolve: {
@@ -83,7 +84,7 @@ module.exports = {
 			store: path.join(__dirname, './src/js/store'),
 		}
 	},
-	devtool: '#source-map'
+	// devtool: '#source-map'
 };
 
 

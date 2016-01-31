@@ -1,6 +1,6 @@
 <template>
 	<cn-header></cn-header>
-	<section id="main-div" class="fit">
+	<section id="list-page" class="fit">
 		<ul>
 			<li v-for="(i, e) in list" v-link="{path: '/topic/' + e.id}">
 				<h3 v-text="e.title" 
@@ -101,7 +101,7 @@
 <style lang="sass">
 	@import "../asset/scss/var.mod.scss";
 
-	#main-div{
+	#list-page{
 		padding-top: $headerHeight;
 		background-color: $bgcolor;
 
