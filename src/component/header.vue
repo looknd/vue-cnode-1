@@ -1,8 +1,8 @@
 <template>
 	<header>
 		<cn-menu v-if="1"></cn-menu>
-		<cn-nav v-if="store.route.name === 'list'"></cn-nav>
-
+		<cn-nav v-if="store.route.name === 'list' || store.route.name === 'topic'"></cn-nav>
+		
 	</header>
 </template>
 
