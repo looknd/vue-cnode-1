@@ -1,0 +1,49 @@
+
+.status{
+	position: relative;
+
+	$total: 60px;
+	$d: 50px;
+	$r: 10px;
+	$defaultMarginTop: ($total - $d)/2;
+
+	&>img.avatar{
+		width: $d;
+		height: $d;
+		position: absolute;
+		top: 50%;
+		margin: -$total/2 + $defaultMarginTop   ($total - $d)/2;
+		border-radius: $r;
+		border: 1px solid #ccc;
+	}
+
+	&>div.detail{
+		margin-left: $total;
+		padding-left: 5px;
+
+		div{
+			$h: 30px;
+			height:$h;
+			font-size: 12px;
+
+			&>span:nth-child(2){
+				height:$h;
+				line-height:$h;
+				margin-right: 60px;
+				display: block;
+				
+				color: #06a;
+				font-family: verdana;
+				overflow: hidden;
+			}
+			&>span:first-child{
+				width: 100px;
+				height:$h;
+				line-height:$h;
+				float:right;
+				text-align: right;
+				overflow: hidden;
+			}
+		}
+	}
+}

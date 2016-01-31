@@ -18,5 +18,4 @@ gulp.task('clean', function(cb) {
 
 gulp.task('webpack', ['clean'], cb => webpack(config, cb) )
 
-
 gulp.task('default', ['webpack']);

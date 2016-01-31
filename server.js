@@ -1,14 +1,17 @@
 'use strict'
 
 var webpack = require('webpack'),
-	DevServer = require('webpack-dev-server'),
+	WebpackDevServer = require('webpack-dev-server'),
 	config = require('./webpack.config')
 
-config.entry.unshift('webpack-dev-server/client?http://localhost:8090', 'webpack/hot/dev-server');
+
+config.entry.unshift('webpack-dev-server/client?http://localhost:9000', 'webpack/hot/dev-server');
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
-new DevServer(webpack(config), {
-	publicPath: config.outputPath,
+var compiler = webpack(config);
+
+var server = new WebpackDevServer(compiler, {
+	publicPath: config.output.publicPath,
 	hot: true,
 	historyApiFallback: true,
 	proxy: [{
@@ -16,5 +19,6 @@ new DevServer(webpack(config), {
 		target: 'https://cnodejs.org',
 		host: 'cnodejs.org'
 	}]
-})
-.listen(9000);
+});
+
+server.listen(9000);

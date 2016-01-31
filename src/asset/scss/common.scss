@@ -1,0 +1,79 @@
+
+@import './var.mod.scss';
+
+@import './reset.scss';
+@import './icon.css';
+@import './status.scss';
+@import './markdown.scss';
+
+
+
+
+html {
+	-webkit-text-size-adjust: none;
+}
+body {
+	height: 100%;
+	width: 100%;
+	font-size: 14px;
+	color: #313131;
+	background-color: $bgcolor;
+	overflow-x: hidden;
+	// font-family: 'PingHei', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'sans-serif';
+}
+
+.wait{
+	$d: 40px;
+	width: $d !important;
+	height: $d !important;
+	line-height: $d + 2;
+	left: 50%;
+	top: $headerHeight + 40;
+	margin-left: -$d/2;
+	margin-top: -$d/2;
+	font-size: $d;
+	text-align: center;
+	color: #42b983;
+	position: fixed;
+	z-index: -1;
+	animation: 1s rotate linear infinite;
+}
+@keyframes rotate{
+	0%{ transform: rotate(0deg); }
+	100%{ transform: rotate(360deg); }
+}
+
+
+.fit:after{
+	content: '.';
+	height: 0;
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+
+.omit{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+hr{
+	border-bottom: 1px solid #ccc;
+	margin: 10px;
+	height: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

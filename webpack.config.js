@@ -5,8 +5,7 @@ var path = require('path'),
 	ExtractText = require('extract-text-webpack-plugin');
 
 var cdn = '',
-	buildPath = '/dist',
-	publicPath = path.join(cdn, buildPath);
+	buildPath = '/dist'
 
 
 module.exports = {
@@ -16,7 +15,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, buildPath),
 		filename: 'build.js',
-		publicPath: publicPath
+		publicPath: path.join(cdn, buildPath)
 	},
 	module: {
 		loaders: [{
@@ -24,10 +23,10 @@ module.exports = {
 			loader: 'vue',
 		}, {
 			test: /\.css$/,
-			loader: ExtractText.extract('style', ['css?sourceMap', 'cssnext'])
+			loader: ExtractText.extract('style', ['css?sourceMap', 'postcss'])
 		}, {
-			test: /\.less$/,
-			loader: ExtractText.extract('style', ['css?sourceMap', 'less', 'cssnext'])
+			test: /\.scss$/,
+			loader: ExtractText.extract('style', ['css?sourceMap', 'sass', 'postcss'])
 		}, {
 			test: /\.js$/,
 			exclude: /node_modules|dist/,
@@ -36,6 +35,9 @@ module.exports = {
 			test: /\.(jpg|png|gif)$/,
 			loader: 'file?name=images/[hash].[ext]'
 		}, {
+			test: /\.(eot|ttf|woff(2)?|svg)(\?[a-z0-9]+)?$/,
+			loader: 'url?limit=10000&minetype=application/font-woff'
+		}, {
 			test: /\.json$/,
 			loader: 'json'
 		}, {
@@ -43,20 +45,44 @@ module.exports = {
 			loader: 'html'
 		}]
 	},
+	vue: {
+		loaders: {
+			css: ExtractText.extract('css'),
+		}
+	},
+
+	//配置插件的插件
 	babel: {
-		presets: ['es2015', 'stage-0'],
+		presets: ['es2015'],
 		plugins: ['transform-runtime']
+	},
+	postcss: function() {
+		return [require('autoprefixer')];
 	},
 	plugins: [
 		// new webpack.optimize.CommonsChunkPlugin('common.js'),
 		new ExtractText('style.css', {
 			allChunks: true,
 			disable: false
+		}),
+		new webpack.ProvidePlugin({
+			$: 'webpack-zepto'
+		}),
+		new webpack.DefinePlugin({
+			ERRORIMG: JSON.stringify('http://img4.imgtn.bdimg.com/it/u=2941524455,810842393&fm=206&gp=0.jpg'),
+			LIST: JSON.stringify('https://cnodejs.org/api/v1/topics'),
+			TOPIC: JSON.stringify('https://cnodejs.org/api/v1/topic'),
+			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job'])
 		})
 	],
-	// resolve: {
-	// 	extension: ['', '.js']
-	// },
+	resolve: {
+		extension: ['', '.js'],
+
+		// 设置别名, 必须用绝对路径, 最好是用path.join
+		alias: {
+			store: path.join(__dirname, './src/js/store'),
+		}
+	},
 	devtool: '#source-map'
 };
 

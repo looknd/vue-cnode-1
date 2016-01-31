@@ -1,0 +1,22 @@
+
+$sideOffset: 100px;
+
+$headerHeight: 50px;
+
+$bgcolor: #eee;
+
+$stdColor: #42b983;
+
+
+$topColor: #c00;
+$askColor: #6cf;
+$goodColor: #f70;
+$jobColor: #999;
+$shareColor: #96f;
+
+
+%omit{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
