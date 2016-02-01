@@ -2,10 +2,14 @@
 	<div class="icon-menu menu-btn" :class="{active: store.isShowMenu}" @click.stop="toggleMenu">
 		</div>
 	<div class="menu" v-show="store.isShowMenu">
+		<div class="user" v-if="store.at" v-link="{path: '/user/' + store.uid}">
+			<img :src="store.avatarUrl" onerror="this.src='{{store.errorImg}}'" v-if="store.avatarUrl" class="avatar">
+			{{store.uname}}
+		</div>
+		
 		<div class="icon-login" v-if="!store.at" @click="showLogin"> 登录</div>
 		<div class="icon-logout" v-if="store.at" @click="logout"> 退出</div>
 		<hr>
-		<div class="icon-msg"> 消息</div>
 		<div class="icon-info" v-link="{name: 'about'}"> 关于</div>
 	</div>
 
@@ -18,7 +22,7 @@
 		data () {
 			return {
 				store: store,
-				logoutStatus: ''
+				logoutStatus: '',
 			}
 		},
 		methods: {
@@ -29,8 +33,7 @@
 				this.store.isShowLogin = true;
 			},
 			logout () {
-				this.store.at = this.store.uid = this.store.redirect = this.store.uname = '';
-
+				this.store.at = this.store.uid = this.store.redirect = this.store.uname = this.store.avatarUrl = '';
 
 				this.logoutStatus = '成功退出登录!'
 				setTimeout(() => {
@@ -92,7 +95,24 @@
 
 		}
 
-		&>div{
+		.user{
+			color: $stdColor;
+			line-height: 2;
+			text-align: center;
+			img.avatar{
+				$d: 50px;
+				width: $d;
+				height: $d;
+				display: block;
+				margin: 0 auto;
+				border-radius: $d/2;
+			}
+			
+		}
+
+
+
+		&>div[class^="icon-"]{
 			$h: 35px;
 			height: $h;
 			line-height: $h;

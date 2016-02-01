@@ -28,7 +28,7 @@
 		methods: {
 			hideDialog () {
 				this.store.isShowLogin = false;
-				this.logoutStatus = '';
+				this.accessToken = this.loginStatus = this.logoutStatus = '';
 			},
 			login () {
 				if(/^[a-z0-9\-]{36}$/g.test(this.accessToken)) {
@@ -37,6 +37,7 @@
 							this.store.at = this.accessToken;
 							this.store.uid = res.id;
 							this.store.uname = res.loginname;
+							this.store.avatarUrl = res.avatar_url;
 
 							this.loginStatus = '登录成功!';
 							this.accessToken = '';

@@ -6,6 +6,9 @@ export default {
 	uid: '',
 	uname: '',
 	redirect: '',
+	avatarUrl: '',
+
+	errorImg: ERRORIMG,
 	scrollOff() {
 		$('body').bind('touchmove', e => e.preventDefault() );
 	},

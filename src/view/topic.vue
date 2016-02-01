@@ -46,9 +46,9 @@
 							<span class="name" v-text="item.author.loginname"></span>
 						</div>
 						<div>
-							<span class="icon-like"
-								:class="{'uped':isUps(item.ups)}"
-								@click="upReply(item)">{{item.ups.length}}</span>
+							<span :class="{'uped':isUps(item.ups)}">
+								<i class="icon-like" @click="upReply(item)"> {{item.ups.length}}</i>
+							</span>
 							<span>
 								发布于:{{item.create_at | getLastTimeStr true}}</span>
 						</div>

@@ -29,7 +29,12 @@ new VueRouter()
 	'/about': {
 		name: 'about',
 		component: require('./view/about.vue'),
-		auth: true
+		// auth: true
+	},
+	'/user/:uid': {
+		name: 'user',
+		component: require('./view/user.vue'),
+		auto: true
 	},
 	'*': {
 		name: 'home',
@@ -43,10 +48,6 @@ new VueRouter()
 	// 	name: 'msg',
 	// 	component: require('./view/msg.vue')
 	// },
-	// '/user/:loginname': {
-	// 	name: 'user',
-	// 	component: require('./view/user.vue')
-	// }
 
 })
 .beforeEach(transition => {
@@ -61,6 +62,7 @@ new VueRouter()
 	});
 
 	if(transition.to.auth) {
+		console.log('hahaha')
 		if(store.at) {
 			transition.next();
 		} else {
