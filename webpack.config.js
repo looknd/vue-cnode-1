@@ -73,6 +73,7 @@ module.exports = {
 			LIST: JSON.stringify('https://cnodejs.org/api/v1/topics'),
 			TOPIC: JSON.stringify('https://cnodejs.org/api/v1/topic'),
 			AT: JSON.stringify('https://cnodejs.org/api/v1/accesstoken'),
+			USER: JSON.stringify('https://cnodejs.org/api/v1/user'),
 			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
 		})
 	],

@@ -26,6 +26,11 @@
 			height:$h;
 			font-size: 12px;
 
+			span a{
+				color: inherit;
+				text-decoration: underline;
+			}
+
 			&>span:nth-child(2){
 				height:$h;
 				line-height:$h;
