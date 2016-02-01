@@ -54,8 +54,10 @@ new VueRouter()
 
 	$(document).on('click', () => {
 		store.isShowMenu = false;
+		
 	}).on('touchmove', () => {
 		store.isShowMenu = false;
+		store.isShowLogin = false;
 	});
 
 	if(transition.to.auth) {

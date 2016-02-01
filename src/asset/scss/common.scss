@@ -66,6 +66,24 @@ hr{
 }
 
 
+.dialog{
+	$w: 280px;
+	width: $w;
+	left: 50%;
+	// top: 30%;
+	margin-left: -$w/2;
+	margin-top: $headerHeight;
+	
+	position: fixed;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	box-sizing: border-box;
+	box-shadow: 0 5px 15px #555;
+	text-align: center;
+}
+
+
 
 
 

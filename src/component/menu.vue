@@ -9,7 +9,7 @@
 		<div class="icon-info" v-link="{name: 'about'}"> 关于</div>
 	</div>
 
-	<cn-login v-if="store.isShowLogin"></cn-login>
+	<cn-login :logout-status="logoutStatus"></cn-login>
 </template>
 
 <script>
@@ -17,7 +17,8 @@
 	export default {
 		data () {
 			return {
-				store: store
+				store: store,
+				logoutStatus: ''
 			}
 		},
 		methods: {
@@ -29,8 +30,14 @@
 			},
 			logout () {
 				this.store.at = this.store.uid = this.store.redirect = this.store.uname = '';
-				if(this.$route.auth)
-					this.$route.router.go({name: 'home'})
+
+
+				this.logoutStatus = '成功退出登录!'
+				setTimeout(() => {
+					this.logoutStatus = '';
+					if(this.$route.auth)
+						this.$route.router.go({name: 'home'});
+				}, 1000)
 			}
 		},
 		components: {

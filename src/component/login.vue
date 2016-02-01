@@ -1,10 +1,14 @@
 <template>
-	<div id="login-matte" @click="hideLogin"></div>
-	<div id="login-dialog">
-		<input type="text" placeholder="AccessToken" v-model="accessToken" @focus="loginStatus = 0">
+	<div class="dialog-matte" @click="hideDialog" v-if="store.isShowLogin || logoutStatus"></div>
+	<div class="login-dialog dialog" v-if="store.isShowLogin" @touchmove.stop>
+		<input type="text" placeholder="AccessToken" v-model="accessToken" @focus="loginStatus = ''">
 		<input type="button" value="登  录" @click="login">
-		<div v-text="loginStatus" v-if="loginStatus"></div>
+		<div v-if="loginStatus" v-text="loginStatus"></div>
 	</div>
+
+	<div class="logout-dialog dialog"
+		v-if="logoutStatus" 
+		v-text="logoutStatus"></div>
 </template>
 
 <script>
@@ -15,12 +19,16 @@
 			return {
 				store: store,
 				accessToken: '',
-				loginStatus: ''
+				loginStatus: '',
+
 			}
 		},
+		//任何地方都可能会激活登录框, 但只有menu中才能退出登录, 所以退出登录提示框指令不需要放在store中
+		props: ['logoutStatus'],
 		methods: {
-			hideLogin () {
+			hideDialog () {
 				this.store.isShowLogin = false;
+				this.logoutStatus = '';
 			},
 			login () {
 				if(/^[a-z0-9\-]{36}$/g.test(this.accessToken)) {
@@ -31,14 +39,16 @@
 							this.store.uname = res.loginname;
 
 							this.loginStatus = '登录成功!';
+							this.accessToken = '';
 							setTimeout(() => {
 								this.store.isShowLogin = false;
+								this.loginStatus = '';
 
 								if(this.store.redirect) {
 									console.log(this.store.redirect)
 									this.$route.router.go({path: this.store.redirect});
 								}
-							}, 2000)
+							}, 1000)
 						}
 					});
 				} else {
@@ -51,35 +61,19 @@
 
 <style lang="sass">
 	@import '../asset/scss/var.mod.scss';
-	#login-matte{
+	.dialog-matte{
 		width: 100%;
 		height: 100%;
 		position: fixed;
 		background-color: #000;
 		opacity: 0.7;
 	}
-	#login-dialog{
-		$w: 250px;
-		$h: 150px;
-		width: $w;
-		// height: $h;
-		left: 50%;
-		top: 30%;
-		margin-left: -$w/2;
-		margin-top: -$w/2;
-		position: fixed;
-		padding: 0 20px;
-		background: #fff;
-		border-radius: 5px;
-		box-sizing: border-box;
-		box-shadow: 0 5px 15px #555;
-		
+	.login-dialog{		
 		input{
 			$h: 40px;
 			$pad: 5px;
-			margin: 20px 0;
+			margin-bottom: 10px;
 			width: 100%;
-			// height: $h;
 			line-height: $h - $pad*2;
 			padding: $pad;
 			display: block;
@@ -103,10 +97,12 @@
 
 		}
 		div{
-			margin: 10px 0;
 			line-height: 2;
 			text-align: center;
 			color: #f70;
 		}
+	}
+	.logout-dialog{
+		color: #f70;
 	}
 </style>
