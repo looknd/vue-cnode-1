@@ -2,11 +2,11 @@
 	<div class="icon-menu menu-btn" :class="{active: store.isShowMenu}" @click.stop="toggleMenu">
 		</div>
 	<div class="menu" v-show="store.isShowMenu">
-		<div class="user" v-if="store.at" v-link="{path: '/user/' + store.uid}">
+		<div class="user" v-if="store.at" v-link="{path: '/user/' + store.uname}">
 			<img :src="store.avatarUrl" onerror="this.src='{{store.errorImg}}'" v-if="store.avatarUrl" class="avatar">
 			{{store.uname}}
 		</div>
-		
+
 		<div class="icon-login" v-if="!store.at" @click="showLogin"> 登录</div>
 		<div class="icon-logout" v-if="store.at" @click="logout"> 退出</div>
 		<hr>

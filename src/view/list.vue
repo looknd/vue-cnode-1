@@ -6,7 +6,7 @@
 				<h3 v-text="e.title" 
 					:class="e.tab | getTabClass e.good e.top"></h3>
 				<div class="status">
-					<img :src="i%2==0 ? e.author.avatar_url : ''" onerror="this.src='{{errorImg}}'" class="avatar">
+					<img :src="i%2==0 ? e.author.avatar_url : ''" onerror="this.src='{{store.errorImg}}'" class="avatar">
 					<div class="detail">
 						<div>
 							<span>
@@ -34,8 +34,6 @@
 	export default {
 		data () {
 			return {
-				errorImg: ERRORIMG,
-
 				// 这里如果直接require会得到未响应的store
 				store: store,
 				list: [],

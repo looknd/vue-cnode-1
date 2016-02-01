@@ -31,10 +31,10 @@ new VueRouter()
 		component: require('./view/about.vue'),
 		// auth: true
 	},
-	'/user/:uid': {
+	'/user/:uname': {
 		name: 'user',
 		component: require('./view/user.vue'),
-		auto: true
+		auth: true
 	},
 	'*': {
 		name: 'home',
@@ -62,7 +62,6 @@ new VueRouter()
 	});
 
 	if(transition.to.auth) {
-		console.log('hahaha')
 		if(store.at) {
 			transition.next();
 		} else {

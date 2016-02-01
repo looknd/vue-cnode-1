@@ -1,5 +1,9 @@
 <template>
 	<cn-header></cn-header>
+
+	<div id="user-page">
+		
+	</div>
 </template>
 
 <script>
@@ -18,4 +22,11 @@
 
 <style lang="sass">
 	@import '../asset/scss/var.mod.scss';
+
+	$pad: 10px;
+	#user-page{
+		padding: $headerHeight+$pad $pad $pad $pad;
+		 
+	}
+
 </style>
