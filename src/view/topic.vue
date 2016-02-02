@@ -147,7 +147,7 @@ $pad: 10px;
 	line-height: $h !important;
 	font-size: $font-tag;
 	font-weight: 400;
-	color: #fff;
+	color: #fff !important;
 	// background-color: #333;
 	border-radius: 0 $br $br 0;
 	text-align: center !important;

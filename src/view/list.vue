@@ -132,6 +132,7 @@
 					font-size: 12px;
 					font-weight: 600;
 					margin: 0 5px;
+					color: #333;
 
 					@extend %omit;
 

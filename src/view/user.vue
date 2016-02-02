@@ -21,6 +21,32 @@
 			全部动态
 		</h3>
 
+		<div class="user-tab fit">
+			<div :class="{active: userTab == 'reply'}" @click="userTab='reply'">
+				<i>78</i>
+				<span>最近回复</span>
+			</div>
+			<div :class="{active: userTab == 'topic'}" @click="userTab='topic'">
+				<i>35</i>
+				<span>最近发布</span>
+			</div>
+		</div>
+		<ul v-if="1">
+			<li class="status">
+				<img :src="store.avatarUrl" class="avatar">
+				<div class="detail">
+					<div>
+						<span></span>
+						<span>hahahha</span>
+					</div>
+					<div>
+						<span></span>
+						<span>jibfdafd</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+
 	</div>
 </template>
 
@@ -34,7 +60,8 @@
 				loginname: '',
 				ghname: '',
 				createAt: '',
-				score: ''
+				score: '',
+				userTab: 'reply'
 			}
 		},
 		route: {
@@ -72,6 +99,43 @@
 			img.avatar{
 				border-radius: 100px;
 				border: none;
+			}
+		}
+
+		.user-tab{
+			$width: 200px;
+			$height: 80px;
+			width: $width;
+			height: $height;
+			margin: 10px auto;
+			&>div{
+				width: 50%;
+				// height: 50px;
+				line-height: 50px;
+				float: left;
+				text-align: center;
+				color: #333;
+				&.active{
+					color: $stdColor;
+				}
+
+				&>*{
+					display: block;
+				}
+
+				$h: 50px;
+				i{
+					height: $h;
+					line-height: $h;
+					font-size: 36px;
+					font-family: verdana;
+					font-style: normal;
+				}
+				span{
+					height: $height - $h;
+					line-height: $height - $h;
+					font-size: 12px;
+				}
 			}
 		}
 

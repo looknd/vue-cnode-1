@@ -26,7 +26,7 @@
 	.icon-home{
 		width: $h;
 		height: $h;
-		color: #999;
+		color: #333;
 		line-height: $h;
 		text-align: center;
 		font-size: 24px;
