@@ -32,7 +32,7 @@
 
 		</section>
 
-		<h3 class="replay-status">
+		<h3 class="subtitle">
 			<strong>{{topic.reply_count}}</strong> 个回复
 		</h3>
 
@@ -208,25 +208,6 @@ $pad: 10px;
 		}
 	}
 
-}
-
-
-
-.replay-status {
-	width: 150px;
-	line-height: 1.8;
-	margin: 0 auto;
-	padding: $pad !important;
-	
-	border-bottom: 2px solid #42b983;
-
-	text-align: center;
-	// background: #f0f0f0;
-	position: relative;
-	// border-radius: 10px;
-	strong {
-		color: #42b983;
-	}
 }
 
 

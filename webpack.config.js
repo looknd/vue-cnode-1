@@ -33,7 +33,8 @@ module.exports = {
 			loader: 'babel'
 		}, {
 			test: /\.(jpg|png|gif)$/,
-			loader: 'file?name=images/[hash].[ext]'
+			loader: 'url?limit=30000&minetype=image/jpeg'
+			// loader: 'file?name=images/[hash].[ext]'
 		}, {
 			test: /\.(eot|ttf|woff(2)?|svg)(\?[a-z0-9]+)?$/,
 			loader: 'url?limit=10000&minetype=application/font-woff'

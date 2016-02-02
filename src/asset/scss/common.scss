@@ -85,7 +85,22 @@ hr{
 
 
 
+.subtitle {
+	width: 150px;
+	line-height: 1.8;
+	margin: 0 auto;
+	padding: 10px !important;
+	
+	border-bottom: 2px solid $stdColor;
 
+	text-align: center;
+	// background: #f0f0f0;
+	position: relative;
+	// border-radius: 10px;
+	strong {
+		color: $stdColor;
+	}
+}
 
 
 

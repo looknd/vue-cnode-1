@@ -1,5 +1,5 @@
 <template>
-	<cn-header></cn-header>
+	<cn-header title="个人中心"></cn-header>
 
 	<div id="user-page">
 		<div class="section">
@@ -7,16 +7,19 @@
 				<img :src="store.avatarUrl" onerror="this.src='{{store.errorImg}}'" class="avatar">
 				<div class="detail">
 					<div>
-						<span></span>
+						<span>积分: {{score}}</span>
 						<span>{{loginname}}</span>
 					</div>
 					<div>
-						<span>abcd</span>
-						<span><a href="https://github.com/{{ghname}}">Github</a></span>
+						<span>{{createAt}}</span>
+						<span><a class="icon-github" href="https://github.com/{{ghname}}"> {{ghname}}</a></span>
 					</div>
 				</div>
 			</div>
 		</div>
+		<h3 class="subtitle">
+			全部动态
+		</h3>
 	</div>
 </template>
 
@@ -29,7 +32,8 @@
 				store: store,
 				loginname: '',
 				ghname: '',
-				createAt: ''
+				createAt: '',
+				score: ''
 			}
 		},
 		route: {
@@ -40,6 +44,7 @@
 						this.loginname = data.loginname;
 						this.ghname = data.githubUsername;
 						this.createAt = data.create_at;
+						this.score = data.score;
 					}
 				})
 			}
@@ -55,12 +60,15 @@
 
 	$pad: 10px;
 	#user-page{
-		padding: $headerHeight+$pad $pad $pad $pad;
+		padding: $headerHeight $pad $pad $pad;
 		background: #fff;
 
 		.section{
+			// background: url(../asset/img/glass.jpg);
+			// background-size: 500px 200px;
 			background: #eee;
 		}
+
 	}
 
 </style>

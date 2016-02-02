@@ -34,19 +34,20 @@ new VueRouter()
 	'/user/:uname': {
 		name: 'user',
 		component: require('./view/user.vue'),
-		auth: true
+		// auth: true
 	},
 	'*': {
 		name: 'home',
 		component: require('./view/home.vue')
 	},
+	'/msg/:uname': {
+		name: 'msg',
+		component: require('./view/msg.vue'),
+		auth: true
+	},
 	// '/add': {
 	// 	name: 'add',
 	// 	component: require('./view/add.vue')
-	// },
-	// '/msg': {
-	// 	name: 'msg',
-	// 	component: require('./view/msg.vue')
 	// },
 
 })

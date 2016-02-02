@@ -1,8 +1,8 @@
 <template>
 	<header>
 		<cn-menu v-if="1"></cn-menu>
-		<cn-nav v-if="true"></cn-nav>
-		
+		<cn-nav v-if="!isShowTitle()"></cn-nav>
+		<cn-title v-if="isShowTitle()" :title="title"></cn-title>
 	</header>
 </template>
 
@@ -14,10 +14,20 @@
 				store: store,
 			}
 		},
+		props: ['title'],
 		components: {
 			cnNav: require('./nav.vue'),
-			cnMenu: require('./menu.vue')
+			cnTitle: require('./title.vue'),
+			cnMenu: require('./menu.vue'),
 		},
+		methods: {
+			backHome () {
+				this.$route.go({name: 'home'})
+			},
+			isShowTitle () {
+				return ['user', 'msg'].indexOf(this.store.route.name) > -1; 
+			}
+		}
 	}
 </script>
 
@@ -26,7 +36,7 @@
 
 	header{
 		width: 100%;
-		background-color: #fff;
+		background-color: rgba(255,255,255, 0.9);
 		position: fixed;
 		box-shadow: 0 2px 5px #999;
 		z-index: 10000;
