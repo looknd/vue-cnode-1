@@ -2,17 +2,20 @@
 .status{
 	position: relative;
 
-	$total: 60px;
+	$total: 50px;
 	$d: 50px;
-	$r: 10px;
+	$r: 30px;
 	$defaultMarginTop: ($total - $d)/2;
+
+	// padding: 0 5px;
 
 	&>img.avatar{
 		width: $d;
 		height: $d;
 		position: absolute;
 		top: 50%;
-		margin: -$total/2 + $defaultMarginTop   ($total - $d)/2;
+		margin: -$total/2 + $defaultMarginTop   0;
+		// margin-left: 0;
 		border-radius: $r;
 		border: 1px solid #ccc;
 	}

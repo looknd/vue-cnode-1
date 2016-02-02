@@ -113,8 +113,8 @@
 
 				margin: 10px auto;
 				border-radius: 10px;
-				// box-shadow: 0 0 5px #999;
-				border: 1px solid #aaa;
+				box-shadow: 0 0 5px #999;
+				// border: 1px solid #aaa;
 
 				&:after{
 					content: '.';
@@ -131,7 +131,7 @@
 					line-height: $h;
 					font-size: 12px;
 					font-weight: 600;
-					margin: 0 5px;
+					padding: 0 2px;
 					color: #333;
 
 					@extend %omit;

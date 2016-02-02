@@ -2,7 +2,9 @@
 	<cn-header title="用户主页"></cn-header>
 
 	<div id="user-page">
-		<div class="section">
+		<div class="user-pannel">
+			<h3>Profile</h3>
+			<hr>
 			<div class="status">
 				<img :src="store.avatarUrl" onerror="this.src='{{store.errorImg}}'" class="avatar">
 				<div class="detail">
@@ -88,18 +90,24 @@
 
 	$pad: 10px;
 	#user-page{
-		padding: $headerHeight $pad $pad $pad;
-		background: #fff;
+		padding: $headerHeight + $pad $pad $pad $pad;
+		background: #f0f0f0;
 
-		.section{
-			background: url(../asset/img/glass.jpg);
-			background-size: 500px 200px;
-			// background: #eee;
+		// .section{
+		// 	background: url(../asset/img/glass.jpg);
+		// 	background-size: 500px 200px;
+		// 	// background: #eee;
 
-			img.avatar{
-				border-radius: 100px;
-				border: none;
-			}
+		// 	img.avatar{
+		// 		border-radius: 100px;
+		// 		border: none;
+		// 	}
+		// }
+		.user-pannel{
+			padding: 10px;
+			background: #fff;
+			border-radius: 5px;
+			box-shadow: 0 0 6px #999;
 		}
 
 		.user-tab{
