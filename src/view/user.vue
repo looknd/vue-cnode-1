@@ -1,5 +1,5 @@
 <template>
-	<cn-header title="个人中心"></cn-header>
+	<cn-header title="用户主页"></cn-header>
 
 	<div id="user-page">
 		<div class="section">
@@ -20,6 +20,7 @@
 		<h3 class="subtitle">
 			全部动态
 		</h3>
+
 	</div>
 </template>
 
@@ -64,9 +65,14 @@
 		background: #fff;
 
 		.section{
-			// background: url(../asset/img/glass.jpg);
-			// background-size: 500px 200px;
-			background: #eee;
+			background: url(../asset/img/glass.jpg);
+			background-size: 500px 200px;
+			// background: #eee;
+
+			img.avatar{
+				border-radius: 100px;
+				border: none;
+			}
 		}
 
 	}
