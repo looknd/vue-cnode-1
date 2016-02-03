@@ -60,6 +60,7 @@
 			},
 			deactivate () {
 				this.store.tab = '';
+				$(window).off('scroll');
 			}
 		},
 		methods: {
@@ -74,6 +75,7 @@
 					this.list.length = 0;
 					$(window).scrollTop(0)
 				}
+
 				$.get(LIST, $.param(this.queryData), ({data}) => {
 					this.loading = false;
 					if(data && data.length) {

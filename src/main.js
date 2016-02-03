@@ -12,6 +12,7 @@ Vue.use(VueResource).use(VueRouter);
 
 Object.keys(filter).forEach(k => Vue.filter(k, filter[k]));
 
+
 new VueRouter()
 .map({
 	'/': {
@@ -90,4 +91,21 @@ new VueRouter()
 })
 
 //将空组件挂在到#app, 然后会根据router跳转一次, 挂在非空组件会跳转多次
-.start(Vue.extend({}), '#app');
+.start(Vue.extend({
+	data () {
+		return {
+			store: store
+		}
+	},
+	ready () {
+		this.$watch('store.at', (newVal, oldVal) => {
+			if(newVal) {
+				this.$broadcast('login');
+			} else if(newVal === '') {
+				this.$broadcast('logout');
+			}
+		})
+	}
+}), '#app');
+
+

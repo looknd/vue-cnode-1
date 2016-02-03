@@ -42,29 +42,37 @@
 			<div v-for="(i,item) in topic.replies" class="replay-box">
 				<div class="status">
 					<img class="avatar" :src="item.author.avatar_url" v-link="{path: '/user/' + item.author.loginname}"/>
-					<div class="detail">
-						<div>
-							<span :class="{'uped':isUps(item.ups)}">
-								<i class="icon-like" @click="upReply(item)"> {{item.ups.length}}</i>
-							</span>
-							<span class="name" v-text="item.author.loginname"></span>
-						</div>
-						<div>
-							<span>
-								<i class="icon-repost"
-									:class="{active: isShowReply[i]}"
-									@click="atHim(item.id, item.author.loginname, i)"></i>
-							</span>
-							<span>{{item.create_at | toNow}}</span>
-						</div>
+					<div class="interact" style="width: 40px;">
+						<i class="icon-repost"
+							:class="{active: isShowReply[i]}"
+							@click="atHim(item.id, item.author.loginname, i)"></i>
+					</div>
+					<div class="interact">
+						<i class="icon-like"> {{item.ups.length}}</i>
+					</div>
+					<div class="detail" style="width: 100px;">
+						<div v-text="item.author.loginname"></div>
+						<div v-text="item.create_at | toNow"></div>
 					</div>
 				</div>
+				<hr>
 				<div v-html="item.content | replaceLink"></div>
-				<section class="reply" v-if="store.at && isShowReply[i]">
-					<textarea rows="6" v-model="replyContent"></textarea>
+				<section class="reply" 
+					v-if="store.at && isShowReply[i]">
+					<textarea rows="6" placeholder="支持Markdown语法"
+						v-model="replyContent"></textarea>
 					<button @click="doReply" debounce="3000">确定回复</button>
 				</section>
 			</div>
+		</section>
+		
+		<section class="reply" v-if="!isShowReplyTopic">
+			<button @click="addReply">回复此贴</button>
+		</section>
+		<section class="reply" placeholder="支持Markdown语法"
+			v-if="store.at && isShowReplyTopic">
+			<textarea rows="6" v-model="replyContent"></textarea>
+			<button @click="doReply" debounce="3000">确定回复</button>
 		</section>
 
 	</div>
@@ -73,7 +81,6 @@
 </template>
 
 <script>
-	import Vue from 'vue';
 	import path from 'path';
 	import store from 'store';
 	import hl from '../js/highlight';
@@ -86,6 +93,7 @@
 
 				topic: {},
 				isShowReply: [],
+				isShowReplyTopic: false,
 				replyId: '',
 				replyContent: ''
 			}
@@ -97,20 +105,33 @@
 						this.topic = data;
 						this.topic.tab = data.good ? 'good' : data.tab;
 
+						for(let i of this.isShowReply.keys()) {
+							this.$set(`isShowReply[${i}]`, false);
+						}
+
 						// 高亮代码
 						setTimeout(()=>{
 							$('pre code').each((i, e) => {
 								e.innerHTML = e.innerHTML.replace(/\t/g, '  ');
 								hl.highlightBlock(e)
-							})	
+							})
 						}, 0)
 					}
 				})
 			}
 		},
+		ready () {
+			this.$on('logout', () => {
+				this.isShowReplyTopic = false;
+				for(let i of this.isShowReply.keys()) {
+					this.$set(`isShowReply[${i}]`, false);
+				}
+				return true;
+			})
+		},
 		methods: {
 			doReply () {
-				// console.log(this.replyContent)
+				console.log(this.replyId + ' ' + this.replyContent)
 			},
 			atHim (id, uname, i) {
 				if(!store.at) {
@@ -118,18 +139,29 @@
 					return;
 				}
 				if(this.isShowReply[i]){
-					Vue.set(this.isShowReply, i, false);
+					this.$set(`isShowReply[${i}]`, false);
 				} else {
-					this.isShowReply.fill(false);
-					Vue.set(this.isShowReply, i, true);
+					for(let i of this.isShowReply.keys()) {
+						this.$set(`isShowReply[${i}]`, false);
+					}
+					this.$set(`isShowReply[${i}]`, true);
+					this.isShowReplyTopic = false;
 
 					let atName = `@${uname}`;
 					this.replyId = id;
 					this.replyContent = '';
 				}
 				
-
-				// console.log(this)
+			},
+			addReply () {
+				if(this.store.at){
+					for(let i of this.isShowReply.keys()) {
+						this.$set(`isShowReply[${i}]`, false);
+					}
+					this.isShowReplyTopic = true;
+				} else {
+					this.store.isShowLogin = true;
+				}
 			}
 		},
 		components: {
@@ -248,29 +280,43 @@ $pad: 10px;
 	&>.replay-box {
 		width: 100%;
 		list-style: none;
-		border: 1px solid #eee;
-		background: #eee;
+		// border: 1px solid #ccc;
+		background: #f5f5f5;
 		border-radius: 15px;
 		margin: 10px auto;
 		padding: 10px;
-		&:last-child {
-			border-bottom: none;
-		}
-		// .uped {
-		// 	color: $color80;
+		box-shadow: 0 0 6px #999;
+		// &:last-child {
+		// 	border-bottom: none;
 		// }
+
 		.icon {
 			font-size: 26px;
 		}
-		// .from{
-		// 	color:$red;
-		// }
-		// .language-javascript{
-		// 	background-color:$colorf0;
-		// 	overflow-x:auto;
-		// }
 	}
-	
+}
+
+.interact{
+	$w: 80px;
+	$h: 60px;
+	width: $w;
+	height: $h;
+	float: right;
+
+	.icon-repost{
+		width: 100%;
+		height: 100%;
+		font-size: 22px;
+		line-height: $h;
+		float: left;
+	}
+	.icon-like{
+		max-width: $w;
+		font-size: 16px;
+		line-height: $h;
+		float: left;
+		@extend %omit;
+	}
 }
 
 .icon-repost{

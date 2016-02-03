@@ -20,7 +20,6 @@
 				store: store,
 				accessToken: '',
 				loginStatus: '',
-
 			}
 		},
 		//任何地方都可能会激活登录框, 但只有menu中才能退出登录, 所以退出登录提示框指令不需要放在store中

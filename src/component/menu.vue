@@ -26,6 +26,12 @@
 				logoutStatus: '',
 			}
 		},
+		ready () {
+			this.$on('logout', () => {
+				this.store.uid = this.store.redirect = this.store.uname = this.store.avatarUrl = '';
+				return true;
+			})
+		},
 		methods: {
 			toggleMenu () {
 				this.store.isShowMenu = !this.store.isShowMenu;
@@ -34,7 +40,7 @@
 				this.store.isShowLogin = true;
 			},
 			logout () {
-				this.store.at = this.store.uid = this.store.redirect = this.store.uname = this.store.avatarUrl = '';
+				this.store.at = '';
 
 				this.logoutStatus = '成功退出登录!'
 				setTimeout(() => {
