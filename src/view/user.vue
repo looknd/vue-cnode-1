@@ -2,52 +2,56 @@
 	<cn-header title="用户主页"></cn-header>
 
 	<div id="user-page">
-		<div class="user-pannel">
+		<section class="user-pannel">
 			<h3>Profile</h3>
 			<hr>
 			<div class="status">
-				<img :src="store.avatarUrl" onerror="this.src='{{store.errorImg}}'" class="avatar">
+				<img :src="avatarUrl" onerror="this.src='{{store.errorImg}}'" class="avatar">
 				<div class="detail">
 					<div>
 						<span>积分: {{score}}</span>
 						<span>{{loginname}}</span>
 					</div>
 					<div>
-						<span>{{createAt}}</span>
+						<span>{{createAt | toNow}}</span>
 						<span><a class="icon-github" href="https://github.com/{{ghname}}"> {{ghname}}</a></span>
 					</div>
 				</div>
 			</div>
-		</div>
-		<h3 class="subtitle">
-			全部动态
-		</h3>
+		</section>
 
-		<div class="user-tab fit">
-			<div :class="{active: userTab == 'reply'}" @click="userTab='reply'">
-				<i>78</i>
-				<span>最近回复</span>
+		<section class="user-pannel">
+			<h3>All Status</h3>
+			<hr>
+			<div class="recent-tab fit">
+				<div :class="{active: tab === 'reply'}" @click="tab='reply'">最近回复</div>
+				<div :class="{active: tab === 'topic'}" @click="tab='topic'">最近发布</div>
 			</div>
-			<div :class="{active: userTab == 'topic'}" @click="userTab='topic'">
-				<i>35</i>
-				<span>最近发布</span>
-			</div>
-		</div>
-		<ul v-if="1">
-			<li class="status">
-				<img :src="store.avatarUrl" class="avatar">
-				<div class="detail">
-					<div>
-						<span></span>
-						<span>hahahha</span>
+			<ul v-show="tab === 'reply'">
+				<li class="status" v-for="(i,e) in reply" v-link="{path: '/topic/' + e.id}">
+					<img :src="e.author.avatar_url" onerror="this.src='{{store.errorImg}}'" class="avatar">
+					<div class="detail">
+						<div v-text="e.title"></div>
+						<div>
+							<span>{{e.last_reply_at | toNow}}</span>
+							<span>{{e.author.loginname}}</span>
+						</div>
 					</div>
-					<div>
-						<span></span>
-						<span>jibfdafd</span>
+				</li>
+			</ul>
+			<ul v-show="tab === 'topic'">
+				<li class="status" v-for="(i,e) in topic" v-link="{path: '/topic/' + e.id}">
+					<img :src="e.author.avatar_url" onerror="this.src='{{store.errorImg}}'" class="avatar">
+					<div class="detail">
+						<div v-text="e.title"></div>
+						<div>
+							<span>{{e.last_reply_at | toNow}}</span>
+							<span>{{e.author.loginname}}</span>
+						</div>
 					</div>
-				</div>
-			</li>
-		</ul>
+				</li>
+			</ul>
+		</section>
 
 	</div>
 </template>
@@ -63,18 +67,27 @@
 				ghname: '',
 				createAt: '',
 				score: '',
-				userTab: 'reply'
+				tab: 'reply',
+
+				avatarUrl: '',
+				reply: [],
+				topic: []
 			}
 		},
 		route: {
 			data ({to}) {
 				$.get(path.join(USER, to.params.uname), ({data}) => {
 					if(data) {
-						this.store.avatarUrl = data.avatar_url;
 						this.loginname = data.loginname;
 						this.ghname = data.githubUsername;
 						this.createAt = data.create_at;
 						this.score = data.score;
+
+						this.avatarUrl = data.avatar_url;
+						this.reply = data.recent_replies;
+						this.topic = data.recent_topics;
+					} else {
+						this.$route.router.go({path: '/*'});
 					}
 				})
 			}
@@ -93,56 +106,35 @@
 		padding: $headerHeight + $pad $pad $pad $pad;
 		background: #f0f0f0;
 
-		// .section{
-		// 	background: url(../asset/img/glass.jpg);
-		// 	background-size: 500px 200px;
-		// 	// background: #eee;
-
-		// 	img.avatar{
-		// 		border-radius: 100px;
-		// 		border: none;
-		// 	}
-		// }
 		.user-pannel{
+			margin: 10px 0;
 			padding: 10px;
 			background: #fff;
 			border-radius: 5px;
 			box-shadow: 0 0 6px #999;
 		}
+		
+		.recent-tab{
 
-		.user-tab{
-			$width: 200px;
-			$height: 80px;
-			width: $width;
-			height: $height;
-			margin: 10px auto;
 			&>div{
+				$h: 40px;
 				width: 50%;
-				// height: 50px;
-				line-height: 50px;
+				height: $h;
+				line-height: $h;
 				float: left;
 				text-align: center;
-				color: #333;
+				// font-size: 12px;
 				&.active{
 					color: $stdColor;
+					// font-weight: bold;
 				}
-
-				&>*{
-					display: block;
-				}
-
-				$h: 50px;
-				i{
-					height: $h;
-					line-height: $h;
-					font-size: 36px;
-					font-family: verdana;
-					font-style: normal;
-				}
-				span{
-					height: $height - $h;
-					line-height: $height - $h;
-					font-size: 12px;
+			}
+		}
+		ul{
+			li{
+				margin: 10px auto;
+				&:not(:last-child){
+					border-bottom: 1px solid #eee;
 				}
 			}
 		}

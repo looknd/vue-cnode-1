@@ -17,8 +17,8 @@
 							</span>
 						</div>
 						<div>
-							<span>{{e.create_at}}</span>
-							<span>{{e.last_reply_at}}</span>
+							<span>{{e.create_at | toNow}}</span>
+							<span>{{e.last_reply_at | toNow}}</span>
 						</div>
 					</div>
 				</div>
@@ -109,7 +109,7 @@
 
 			li{
 				background-color: #fff;
-				padding: 5px;
+				padding: 5px 10px;
 
 				margin: 10px auto;
 				border-radius: 10px;
@@ -131,7 +131,7 @@
 					line-height: $h;
 					font-size: 12px;
 					font-weight: 600;
-					padding: 0 2px;
+					// padding: 0 2px;
 					color: #333;
 
 					@extend %omit;

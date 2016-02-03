@@ -13,5 +13,44 @@ export default {
 		if(tab === 'ask') return '问答';
 		if(tab === 'job') return '招聘';
 		return '';
+	},
+	toNow (t) {
+		t = (Date.now() - new Date(t))/1000;
+		if(t < 0) return '???';
+
+		let year = 3600*24*360,
+			month = 3600*24*30,
+			day = 3600*24,
+			hour = 3600,
+			minute = 60
+
+		if(t > year) {
+			return ~~(t/year) + '年前';
+		} else if(t > month) {
+			return ~~(t/month) + '月前';
+		} else if(t > day) {
+			return ~~(t/day) + '天前';
+		} else if(t > hour) {
+			return ~~(t/hour) + '小时前';
+		} else if(t > minute) {
+			return ~~(t/minute) + '分钟前';
+		} else {
+			return ~~t + '秒前';
+		}
+	},
+
+	replaceLink(s) {
+		//将后台返回的a标签中的 /user/:loginname 替换为 /#!/user/:loginname
+		return s.replace(/<a.+?>[^@]*(@)([\w\-]+?)\s*<\/a>/gi, '<a href="/#!/user/$2">$1$2</a>')
 	}
+
+
 }
+
+
+
+
+
+
+
+

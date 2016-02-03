@@ -1,12 +1,14 @@
 <template>
 	<cn-header></cn-header>
-	
+
 	<div id="topic-page" v-if="topic.title">
 		<h2 class="topic-title" v-text="topic.title"></h2>
 
 		<div class="section">
 			<div class="status">
-				<img :src="topic.author.avatar_url" class="avatar" onerror="this.src='{{errorImg}}'">
+				<img class="avatar" onerror="this.src='{{errorImg}}'"
+					:src="topic.author.avatar_url"  
+					v-link="{path: '/user/' + topic.author.loginname}">
 				<div class="detail">
 					<div>
 						<span class="tag" :class="topic.tab">
@@ -21,7 +23,7 @@
 							{{topic.visit_count}}次浏览
 						</span>
 						<span>
-							发布于: {{topic.create_at}}
+							发布于: {{topic.create_at | toNow}}
 						</span>
 					</div>
 				</div>
@@ -37,30 +39,31 @@
 		</h3>
 
 		<section class="reply-list">
-			<div v-for="item in topic.replies" class="replay-box">
-				<section class="status">
-					<img class="avatar" :src="item.author.avatar_url"/>
+			<div v-for="(i,item) in topic.replies" class="replay-box">
+				<div class="status">
+					<img class="avatar" :src="item.author.avatar_url" v-link="{path: '/user/' + item.author.loginname}"/>
 					<div class="detail">
-						<div>
-							<span class="icon-repost" @click="addReply(item.id)"></span>
-							<span class="name" v-text="item.author.loginname"></span>
-						</div>
 						<div>
 							<span :class="{'uped':isUps(item.ups)}">
 								<i class="icon-like" @click="upReply(item)"> {{item.ups.length}}</i>
 							</span>
+							<span class="name" v-text="item.author.loginname"></span>
+						</div>
+						<div>
 							<span>
-								发布于:{{item.create_at | getLastTimeStr true}}</span>
+								<i class="icon-repost"
+									:class="{active: isShowReply[i]}"
+									@click="atHim(item.id, item.author.loginname, i)"></i>
+							</span>
+							<span>{{item.create_at | toNow}}</span>
 						</div>
 					</div>
+				</div>
+				<div v-html="item.content | replaceLink"></div>
+				<section class="reply" v-if="store.at && isShowReply[i]">
+					<textarea rows="6" v-model="replyContent"></textarea>
+					<button @click="doReply" debounce="3000">确定回复</button>
 				</section>
-				<div class="reply_content" v-html="item.content"></div>
-				<cn-reply :topic.sync="topic"
-						:topic-id="topicId"
-						:reply-id="item.id"
-						:reply-to="item.author.loginname"
-						:show.sync="curReplyId"
-						v-if="userId && curReplyId === item.id"></cn-reply>
 			</div>
 		</section>
 
@@ -70,6 +73,7 @@
 </template>
 
 <script>
+	import Vue from 'vue';
 	import path from 'path';
 	import store from 'store';
 	import hl from '../js/highlight';
@@ -80,7 +84,10 @@
 				store: store,
 				errorImg: ERRORIMG,
 
-				topic: {}
+				topic: {},
+				isShowReply: [],
+				replyId: '',
+				replyContent: ''
 			}
 		},
 		route: {
@@ -99,6 +106,30 @@
 						}, 0)
 					}
 				})
+			}
+		},
+		methods: {
+			doReply () {
+				// console.log(this.replyContent)
+			},
+			atHim (id, uname, i) {
+				if(!store.at) {
+					store.isShowLogin = true;
+					return;
+				}
+				if(this.isShowReply[i]){
+					Vue.set(this.isShowReply, i, false);
+				} else {
+					this.isShowReply.fill(false);
+					Vue.set(this.isShowReply, i, true);
+
+					let atName = `@${uname}`;
+					this.replyId = id;
+					this.replyContent = '';
+				}
+				
+
+				// console.log(this)
 			}
 		},
 		components: {
@@ -240,6 +271,54 @@ $pad: 10px;
 		// }
 	}
 	
+}
+
+.icon-repost{
+	$h: 30px;
+	width: $h;
+	height: $h;
+	line-height: $h;
+	text-align: center;
+	float: right;
+	font-size: 16px;
+	&.active{
+		color: $stdColor;
+	}
+}
+
+.reply{
+
+	textarea{
+		width: 100%;
+		padding: 10px;
+		display: block;
+
+		border-radius: 15px;
+		border: 1px solid #ddd;
+		font-size: 14px;
+		margin: 10px 0;
+		transition: all .2s ease;
+
+		&:focus{
+			border-color: $stdColor;
+			box-shadow: 0 0 6px $stdColor;
+		}
+	}
+	button{
+		$w: 100px;
+		$h: 30px;
+		width: $w;
+		height: $h;
+		line-height: $h;
+		margin: auto;
+		padding: 0;
+		border: none;
+		display: block;
+		background-color: $stdColor;
+		color: #fff;
+		border-radius: $h/2;
+		font-size: 14px;
+	}
 }
 
 </style>

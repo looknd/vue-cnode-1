@@ -1,63 +1,261 @@
 @font-face {
-    font-family: 'icomoon';
-    src:    url('fonts/icomoon.eot?r4g7f1');
-    src:    url('fonts/icomoon.eot?r4g7f1#iefix') format('embedded-opentype'),
-        url('fonts/icomoon.ttf?r4g7f1') format('truetype'),
-        url('fonts/icomoon.woff?r4g7f1') format('woff'),
-        url('fonts/icomoon.svg?r4g7f1#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'icomoon';
+	src:    url('fonts/icomoon.eot?7q0nz3');
+	src:    url('fonts/icomoon.eot?7q0nz3#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?7q0nz3') format('truetype'),
+		url('fonts/icomoon.woff?7q0nz3') format('woff'),
+		url('fonts/icomoon.svg?7q0nz3#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
 
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-smirking-face-sunglasses:before {
+	content: "\e90d";
+}
+.icon-face-sunglasses:before {
+	content: "\e90e";
+}
+.icon-face-glasses:before {
+	content: "\e90f";
+}
+.icon-face-moustache:before {
+	content: "\e910";
+}
+.icon-face-moustache2:before {
+	content: "\e911";
+}
+.icon-astonished-face:before {
+	content: "\e912";
+}
+.icon-astonished-face2:before {
+	content: "\e913";
+}
+.icon-sad-face-closed-eyes:before {
+	content: "\e914";
+}
+.icon-face-closed-eyes-open-mouth:before {
+	content: "\e915";
+}
+.icon-face-closed-eyes-open-mouth2:before {
+	content: "\e916";
+}
+.icon-face-closed-eyes-open-mouth3:before {
+	content: "\e917";
+}
+.icon-amused-face-closed-eyes:before {
+	content: "\e918";
+}
+.icon-amused-face-closed-eyes2:before {
+	content: "\e919";
+}
+.icon-amused-face:before {
+	content: "\e91a";
+}
+.icon-face-closed-meyes:before {
+	content: "\e91b";
+}
+.icon-sad-face--tightly-closed-eyes:before {
+	content: "\e91c";
+}
+.icon-unamused-face-tightly-closed-eyes:before {
+	content: "\e91d";
+}
+.icon-angry-face-open-mouth-eyebrows:before {
+	content: "\e91e";
+}
+.icon-face-open-mouth-eyebrows:before {
+	content: "\e91f";
+}
+.icon-face-open-mouth-eyebrows2:before {
+	content: "\e920";
+}
+.icon-worried-face-teeth:before {
+	content: "\e921";
+}
+.icon-angry-face-teeth:before {
+	content: "\e922";
+}
+.icon-grinning-face-teeth:before {
+	content: "\e923";
+}
+.icon-grinning-face-teeth2:before {
+	content: "\e924";
+}
+.icon-kissing-face:before {
+	content: "\e925";
+}
+.icon-kissing-face2:before {
+	content: "\e926";
+}
+.icon-face-stuck-out-tongue:before {
+	content: "\e927";
+}
+.icon-face-stuck-out-tongue2:before {
+	content: "\e928";
+}
+.icon-worried-face-eyebrows:before {
+	content: "\e929";
+}
+.icon-fake-grinning-face-eyebrows:before {
+	content: "\e92a";
+}
+.icon-grinning-face:before {
+	content: "\e92b";
+}
+.icon-grinning-face2:before {
+	content: "\e92c";
+}
+.icon-angry-face-eyebrows:before {
+	content: "\e92d";
+}
+.icon-worried-face:before {
+	content: "\e92e";
+}
+.icon-angry-face:before {
+	content: "\e92f";
+}
+.icon-neutral-face-eyebrows:before {
+	content: "\e930";
+}
+.icon-sad-face-eyebrows:before {
+	content: "\e931";
+}
+.icon-grinning-face-eyebrows:before {
+	content: "\e932";
+}
+.icon-grinning-face-eyebrows2:before {
+	content: "\e933";
+}
+.icon-smiling-face-eyebrows:before {
+	content: "\e934";
+}
+.icon-stubborn-face:before {
+	content: "\e935";
+}
+.icon-smirking-face:before {
+	content: "\e936";
+}
+.icon-laughing-face:before {
+	content: "\e937";
+}
+.icon-laughing-face2:before {
+	content: "\e938";
+}
+.icon-laughing-face3:before {
+	content: "\e939";
+}
+.icon-winking-face:before {
+	content: "\e93a";
+}
+.icon-winking-face2:before {
+	content: "\e93b";
+}
+.icon-face-open-mouth:before {
+	content: "\e93c";
+}
+.icon-face-open-mouth2:before {
+	content: "\e93d";
+}
+.icon-sad-face:before {
+	content: "\e93e";
+}
+.icon-sad-face2:before {
+	content: "\e93f";
+}
+.icon-sad-face3:before {
+	content: "\e940";
+}
+.icon-sad-face4:before {
+	content: "\e941";
+}
+.icon-sad-face5:before {
+	content: "\e942";
+}
+.icon-sad-face6:before {
+	content: "\e943";
+}
+.icon-smiling-face:before {
+	content: "\e944";
+}
+.icon-smiling-face2:before {
+	content: "\e945";
+}
+.icon-smiling-face3:before {
+	content: "\e946";
+}
+.icon-smiling-face4:before {
+	content: "\e947";
+}
+.icon-neutral-face:before {
+	content: "\e948";
+}
+.icon-neutral-face2:before {
+	content: "\e949";
+}
+.icon-face-missing-moth:before {
+	content: "\e94a";
+}
+.icon-flashed-face-glasses:before {
+	content: "\e94b";
+}
+.icon-flashed-face:before {
+	content: "\e94c";
+}
+.icon-flashed-face2:before {
+	content: "\e94d";
+}
+.icon-sorry:before {
+	content: "\e90c";
+}
 .icon-home:before {
-    content: "\e90b";
+	content: "\e90b";
 }
 .icon-like:before {
-    content: "\e901";
+	content: "\e901";
 }
 .icon-menu:before {
-    content: "\e904";
+	content: "\e904";
 }
 .icon-logout:before {
-    content: "\e905";
+	content: "\e905";
 }
 .icon-login:before {
-    content: "\e906";
+	content: "\e906";
 }
 .icon-repost:before {
-    content: "\e903";
+	content: "\e903";
 }
 .icon-msg:before {
-    content: "\e902";
+	content: "\e902";
 }
 .icon-wait:before {
-    content: "\e90a";
+	content: "\e90a";
 }
 .icon-info:before {
-    content: "\e907";
+	content: "\e907";
 }
 .icon-backtop:before {
-    content: "\e908";
+	content: "\e908";
 }
 .icon-github:before {
-    content: "\e900";
+	content: "\e900";
 }
 .icon-back:before {
-    content: "\e909";
+	content: "\e909";
 }
 

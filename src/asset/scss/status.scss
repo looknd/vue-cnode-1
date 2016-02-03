@@ -24,34 +24,38 @@
 		margin-left: $total;
 		padding-left: 5px;
 
-		div{
+		&>div{
 			$h: 30px;
 			height:$h;
-			font-size: 12px;
+			line-height: $h;
+			@extend %omit;
 
 			span a{
 				color: inherit;
 				// text-decoration: underline;
 			}
 
+			$right: 100px;
 			&>span:nth-child(2){
 				height:$h;
 				line-height:$h;
-				margin-right: 60px;
+				margin-right: $right;
 				display: block;
+				font-size: 12px;
 				
 				color: #06a;
 				font-family: verdana;
-				overflow: hidden;
+				@extend %omit;
 			}
 			&>span:first-child{
-				width: 100px;
+				width: $right;
 				height:$h;
 				line-height:$h;
 				color: #333;
 				float:right;
 				text-align: right;
-				overflow: hidden;
+				font-size: 12px;
+				@extend %omit;
 			}
 		}
 	}

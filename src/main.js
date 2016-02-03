@@ -36,14 +36,14 @@ new VueRouter()
 		component: require('./view/user.vue'),
 		// auth: true
 	},
-	'*': {
-		name: 'home',
-		component: require('./view/home.vue')
-	},
 	'/msg/:uname': {
 		name: 'msg',
 		component: require('./view/msg.vue'),
 		auth: true
+	},
+	'*': {
+		name: 'error',
+		component: require('./view/error.vue')
 	},
 	// '/add': {
 	// 	name: 'add',
@@ -73,15 +73,18 @@ new VueRouter()
 	} else {
 		transition.next();
 	}
-	// console.log(transition)
+	
 })
 .afterEach(({to}) => {
 	if(to.name === 'list') {
-		store.tab = TAB.indexOf(to.params.tab) > -1 ? to.params.tab : 'all';
+		if(TAB.indexOf(to.params.tab) >= 0) {
+			store.tab = to.params.tab;
+		} else {
+			to.router.go({path: '/list/all'});
+		}
 	} else {
-		store.tab = ''
+		store.tab = '';
 	}
-	
 	store.isShowMenu = false;
 	store.route = to;
 })
