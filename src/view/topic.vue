@@ -42,14 +42,12 @@
 			<div v-for="(i,item) in topic.replies" class="replay-box">
 				<div class="status">
 					<img class="avatar" :src="item.author.avatar_url" v-link="{path: '/user/' + item.author.loginname}"/>
-					<div class="interact" style="width: 40px;">
-						<i class="icon-repost"
-							:class="{active: isShowReply[i]}"
-							@click="atHim(item.id, item.author.loginname, i)"></i>
-					</div>
-					<div class="interact">
-						<i class="icon-like"> {{item.ups.length}}</i>
-					</div>
+					<i class="icon-repost"
+						:class="{active: isShowReply[i]}"
+						@click="atHim(item, i)"></i>
+					<i class="icon-like"
+						:class="{active: item.ups.indexOf(store.uid) > -1}"
+						@click="vote(item)">{{item.ups.length | formatNum}}</i>
 					<div class="detail" style="width: 100px;">
 						<div v-text="item.author.loginname"></div>
 						<div v-text="item.create_at | toNow"></div>
@@ -133,7 +131,22 @@
 			doReply () {
 				console.log(this.replyId + ' ' + this.replyContent)
 			},
-			atHim (id, uname, i) {
+			vote (item) {
+				if(!store.at) {
+					store.isShowLogin = true;
+					return;
+				}
+				$.post(`https:\/\/cnodejs.org/api/v1/reply/${item.id}/ups`, {accesstoken: store.at}, (res) => {
+					if(res.success) {
+						if(res.action === 'up') {
+							item.ups.push(store.uid);
+						} else if(res.action === 'down') {
+							item.ups.pop();
+						}
+					}
+				});
+			},
+			atHim (item, i) {
 				if(!store.at) {
 					store.isShowLogin = true;
 					return;
@@ -147,8 +160,8 @@
 					this.$set(`isShowReply[${i}]`, true);
 					this.isShowReplyTopic = false;
 
-					let atName = `@${uname}`;
-					this.replyId = id;
+					let atName = `@${item.author.loginname}`;
+					this.replyId = item.id;
 					this.replyContent = '';
 				}
 				
@@ -290,47 +303,64 @@ $pad: 10px;
 		// 	border-bottom: none;
 		// }
 
+		[class^="icon-"]{
+			$w: 60px;
+			$h: 60px;
+			width: $w;
+			height: $h;
+			line-height: $h;
+			float: right;
+			text-align: center;
+			font-size: 22px;
+
+			&.icon-like{
+				font-size: 16px;
+			}
+
+			&.active{
+				color: $stdColor;
+			}
+		}
 		.icon {
 			font-size: 26px;
 		}
 	}
 }
 
-.interact{
-	$w: 80px;
-	$h: 60px;
-	width: $w;
-	height: $h;
-	float: right;
 
-	.icon-repost{
-		width: 100%;
-		height: 100%;
-		font-size: 22px;
-		line-height: $h;
-		float: left;
-	}
-	.icon-like{
-		max-width: $w;
-		font-size: 16px;
-		line-height: $h;
-		float: left;
-		@extend %omit;
-	}
-}
+// [class=]
+// .interact{
+// 	$w: 60px;
+// 	$h: 60px;
+// 	width: $w;
+// 	height: $h;
+// 	float: right;
 
-.icon-repost{
-	$h: 30px;
-	width: $h;
-	height: $h;
-	line-height: $h;
-	text-align: center;
-	float: right;
-	font-size: 16px;
-	&.active{
-		color: $stdColor;
-	}
-}
+// 	.icon-repost{
+// 		width: 100%;
+// 		height: 100%;
+// 		font-size: 22px;
+// 		line-height: $h;
+// 		text-align: center;
+// 		float: left;
+
+// 		&.active{
+// 			color: $stdColor;
+// 		}
+// 	}
+// 	.icon-like{
+// 		max-width: $w;
+// 		font-size: 16px;
+// 		line-height: $h;
+// 		float: left;
+// 		@extend %omit;
+
+// 		&.active{
+// 			color: $stdColor;
+// 		}
+// 	}
+// }
+
 
 .reply{
 
@@ -341,7 +371,7 @@ $pad: 10px;
 
 		border-radius: 15px;
 		border: 1px solid #ddd;
-		font-size: 14px;
+		font-size: 12px;
 		margin: 10px 0;
 		transition: all .2s ease;
 

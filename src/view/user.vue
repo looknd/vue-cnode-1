@@ -13,7 +13,7 @@
 						<span>{{loginname}}</span>
 					</div>
 					<div>
-						<span>{{createAt | toNow}}</span>
+						<span>{{createAt | toNow}}注册</span>
 						<span><a class="icon-github" href="https://github.com/{{ghname}}"> {{ghname}}</a></span>
 					</div>
 				</div>

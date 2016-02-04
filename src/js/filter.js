@@ -27,7 +27,7 @@ export default {
 		if(t > year) {
 			return ~~(t/year) + '年前';
 		} else if(t > month) {
-			return ~~(t/month) + '月前';
+			return ~~(t/month) + '个月前';
 		} else if(t > day) {
 			return ~~(t/day) + '天前';
 		} else if(t > hour) {
@@ -37,6 +37,19 @@ export default {
 		} else {
 			return ~~t + '秒前';
 		}
+	},
+
+	formatNum (n) {
+		n = ~~n;
+		let m = 1000000,
+			w = 10000,
+			k = 1000
+
+		if(n > m) return (n/m).toFixed(1) + 'M';
+		else if(n > w) return (n/w).toFixed(1) + 'W';
+		else if(n > k) return (n/k).toFixed(1) + 'K';
+		else
+			return n;
 	},
 
 	replaceLink(s) {

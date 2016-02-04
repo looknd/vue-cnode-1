@@ -10,7 +10,7 @@
 					<div class="detail">
 						<div>
 							<span>
-								<i style="color: #06a">{{e.reply_count}}</i> /{{e.visit_count}}
+								{{e.reply_count}} /{{e.visit_count}}
 							</span>
 							<span>
 								{{e.author.loginname}}

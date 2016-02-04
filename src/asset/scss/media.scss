@@ -1,0 +1,82 @@
+@import './var.mod.scss';
+
+
+[id$="-page"]{
+	max-width: $maxWidth !important;
+	margin: auto;
+}
+
+// header{
+// 	max-width: $maxWidth;
+// 	left: 50%;
+// 	margin-left: -$maxWidth/2;
+// }
+
+
+@media screen and (min-width: $maxWidth){
+	%fade{
+		&:hover{
+			background: $hColor !important;
+		}
+		transition: background .3s ease;
+		cursor: pointer;
+	}
+	body{
+		background-color: #fff !important;
+	}
+	[id$="-page"]{
+		background-color: #fff !important;
+	}
+	.section{
+		border-radius: 15px;
+		.avatar{
+			cursor: pointer;
+		}
+	}
+
+	.nav{
+		span{
+			@extend %fade;
+		}
+	}
+	.menu-btn{
+		@extend %fade;
+	}
+	.menu{
+		&>div{
+			border-radius: 10px;
+			cursor: pointer;
+			transition: all .3s ease;
+		}
+		&>[class^="icon-"]:hover{
+			background: $hColor;
+		}
+	}
+
+	#list-page{
+		&>ul>li{
+			margin: 15px auto !important;
+			cursor: pointer;
+			border-radius: 15px !important;
+		}
+	}
+	#user-page{
+		li.status{
+			cursor: pointer;
+		}
+	}
+	#topic-page{
+		.reply button{
+			transition: all .3s ease;
+			&:hover{
+				background: darken($stdColor, 5%);
+				cursor: pointer;
+			}
+		}
+	}
+	.icon-home{
+		@extend %fade;
+	}
+}
+
+

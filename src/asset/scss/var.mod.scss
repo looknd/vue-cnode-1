@@ -7,12 +7,18 @@ $bgcolor: #eee;
 
 $stdColor: #42b983;
 
+$stdColor2: #06a;
+
+$hColor: #f0f0f0;
+
 
 $topColor: #c00;
 $askColor: #6cf;
 $goodColor: #f70;
 $jobColor: #999;
 $shareColor: #96f;
+
+$maxWidth: 800px;
 
 
 %omit{
@@ -28,7 +34,7 @@ $shareColor: #96f;
 	// top: 30%;
 	margin-left: -$w/2;
 	margin-top: $headerHeight;
-	
+
 	position: fixed;
 	padding: 20px;
 	background: #fff;

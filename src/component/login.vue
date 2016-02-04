@@ -20,6 +20,7 @@
 				store: store,
 				accessToken: '',
 				loginStatus: '',
+				loading: false
 			}
 		},
 		//任何地方都可能会激活登录框, 但只有menu中才能退出登录, 所以退出登录提示框指令不需要放在store中
@@ -30,29 +31,41 @@
 				this.accessToken = this.loginStatus = this.logoutStatus = '';
 			},
 			login () {
+				if(this.loading) return;
+				this.loading = true;
 				if(/^[a-z0-9\-]{36}$/g.test(this.accessToken)) {
-					$.post(AT, {accesstoken: this.accessToken}, (res) => {
-						if(res.success) {
-							this.store.at = this.accessToken;
-							this.store.uid = res.id;
-							this.store.uname = res.loginname;
-							this.store.avatarUrl = res.avatar_url;
+					$.ajax({
+						url: AT,
+						data: {accesstoken: this.accessToken},
+						type: 'POST',
+						success: (res) => {
+							if(res.success) {
+								this.store.at = this.accessToken;
+								this.store.uid = res.id;
+								this.store.uname = res.loginname;
+								this.store.avatarUrl = res.avatar_url;
 
-							this.loginStatus = '登录成功!';
-							this.accessToken = '';
-							setTimeout(() => {
-								this.store.isShowLogin = false;
-								this.loginStatus = '';
+								this.loginStatus = '登录成功!';
+								this.accessToken = '';
+								setTimeout(() => {
+									this.loading = false;
+									this.store.isShowLogin = false;
+									this.loginStatus = '';
 
-								if(this.store.redirect) {
-									console.log(this.store.redirect)
-									this.$route.router.go({path: this.store.redirect});
-								}
-							}, 1000)
+									if(this.store.redirect) {
+										this.$route.router.go({path: this.store.redirect});
+									}
+								}, 1000)
+							}
+						},
+						error: () => {
+							this.loginStatus = 'AccessToken 错误!';
+							this.loading = false;
 						}
 					});
 				} else {
 					this.loginStatus = 'AccessToken 格式不对!';
+					this.loading = false;
 				}
 			}
 		}
