@@ -1,14 +1,11 @@
 <template>
-	<div class="dialog-matte" @click="hideDialog" v-if="store.isShowLogin || logoutStatus"></div>
-	<div class="login-dialog dialog" v-if="store.isShowLogin" @touchmove.stop>
+	<div class="alert-matte" @click="hideDialog" v-if="store.isShowLogin"></div>
+	<div class="login-dialog alert" v-if="store.isShowLogin" @touchmove.stop>
 		<input type="text" placeholder="AccessToken" v-model="accessToken" @focus="loginStatus = ''">
-		<input type="button" value="登  录" @click="login">
+		<button class="lbtn" @click="login">登 录</button>
 		<div v-if="loginStatus" v-text="loginStatus"></div>
 	</div>
 
-	<div class="logout-dialog dialog"
-		v-if="logoutStatus" 
-		v-text="logoutStatus"></div>
 </template>
 
 <script>
@@ -24,11 +21,11 @@
 			}
 		},
 		//任何地方都可能会激活登录框, 但只有menu中才能退出登录, 所以退出登录提示框指令不需要放在store中
-		props: ['logoutStatus'],
+		// props: ['logoutStatus'],
 		methods: {
 			hideDialog () {
 				this.store.isShowLogin = false;
-				this.accessToken = this.loginStatus = this.logoutStatus = '';
+				this.accessToken = this.loginStatus = '';
 			},
 			login () {
 				if(this.loading) return;
@@ -55,7 +52,7 @@
 									if(this.store.redirect) {
 										this.$route.router.go({path: this.store.redirect});
 									}
-								}, 1000)
+								}, 1000);
 							}
 						},
 						error: () => {
@@ -68,19 +65,15 @@
 					this.loading = false;
 				}
 			}
+		},
+		components: {
+			cnAlert: require('./alert.vue')
 		}
 	}
 </script>
 
 <style lang="sass">
 	@import '../asset/scss/var.mod.scss';
-	.dialog-matte{
-		width: 100%;
-		height: 100%;
-		position: fixed;
-		background-color: #000;
-		opacity: 0.7;
-	}
 	.login-dialog{		
 		input{
 			$h: 40px;
@@ -90,32 +83,21 @@
 			line-height: $h - $pad*2;
 			padding: $pad;
 			display: block;
-			
-			&[type="text"]{
-				border: 2px solid $stdColor;
-				border-radius: 5px;
-				color: $stdColor;
-				transition: all .2s ease;
-				&:focus{
-					box-shadow: 0 0 6px $stdColor;
-				}
-			}
-			&[type="button"]{
-				color: #fff;
-				background: $stdColor;
-				border: none;
-				border-radius: 5px;
-				font-size: 16px;
-			}
-
 		}
+		input[type="text"]{
+			border: 2px solid $stdColor;
+			border-radius: 5px;
+			color: $stdColor;
+			transition: all .2s ease;
+			&:focus{
+				box-shadow: 0 0 6px $stdColor;
+			}
+		}
+
 		div{
 			line-height: 2;
 			text-align: center;
 			color: #f70;
 		}
-	}
-	.logout-dialog{
-		color: #f70;
 	}
 </style>

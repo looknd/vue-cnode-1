@@ -3,7 +3,7 @@
 
 	<div id="user-page">
 		<section class="user-pannel">
-			<h3>Profile</h3>
+			<h3>用户状态</h3>
 			<hr>
 			<div class="status">
 				<img :src="avatarUrl" onerror="this.src='{{store.errorImg}}'" class="avatar">
@@ -20,8 +20,36 @@
 			</div>
 		</section>
 
+		<section class="user-pannel" v-if="true">
+			<h3>回复消息</h3>
+			<hr>
+			<div class="msg-tab fit">
+				<div>已读信息</div>
+				<div>未读信息</div>
+			</div>
+			<ul>
+				<li v-for="i in 4">
+					<div class="status">
+						<img :src="store.errorImg" class="avatar">
+						<div class="detail">
+							<div>
+								<span>678927</span>
+								<span>fdafda</span>
+							</div>
+							<div>
+								<span>iofdakm</span>
+								<span>fksamfl</span>
+							</div>
+						</div>
+					</div>
+					
+					<div>hahahahahhahahah</div>
+				</li>
+			</ul>
+		</section>
+
 		<section class="user-pannel">
-			<h3>All Status</h3>
+			<h3>最近动态</h3>
 			<hr>
 			<div class="recent-tab fit">
 				<div :class="{active: tab === 'reply'}" @click="tab='reply'">最近回复</div>
@@ -84,7 +112,9 @@
 						this.score = data.score;
 
 						this.avatarUrl = data.avatar_url;
-						this.reply = data.recent_replies;
+						this.reply = data.recent_replies.sort((a, b) => {
+							return +new Date(a.last_reply_at) > +new Date(b.last_reply_at) ? -1 : 1;
+						});
 						this.topic = data.recent_topics;
 					} else {
 						this.$route.router.go({path: '/*'});
@@ -114,7 +144,8 @@
 			box-shadow: 0 0 6px #999;
 		}
 		
-		.recent-tab{
+		.recent-tab, .msg-tab{
+			cursor: default;
 
 			&>div{
 				$h: 40px;

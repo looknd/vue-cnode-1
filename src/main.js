@@ -90,7 +90,8 @@ new VueRouter()
 	store.route = to;
 })
 
-//将空组件挂在到#app, 然后会根据router跳转一次, 挂在非空组件会跳转多次
+//将空组件挂到#app, 然后会根据router跳转一次, 挂一个非空组件会跳转多次
+//这个空组件是整个app的root组件
 .start(Vue.extend({
 	data () {
 		return {

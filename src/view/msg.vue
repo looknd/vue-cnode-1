@@ -1,5 +1,6 @@
 <template>
 	<cn-header title="消息"></cn-header>
+	
 </template>
 
 <script>

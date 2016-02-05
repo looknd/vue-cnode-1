@@ -59,18 +59,18 @@
 					v-if="store.at && isShowReply[i]">
 					<textarea rows="6" placeholder="支持Markdown语法"
 						v-model="replyContent"></textarea>
-					<button @click="doReply" debounce="3000">确定回复</button>
+					<button class="btn" @click="doReply" debounce="3000">确定回复</button>
 				</section>
 			</div>
 		</section>
 		
 		<section class="reply" v-if="!isShowReplyTopic">
-			<button @click="addReply">回复此贴</button>
+			<button class="btn" @click="addReply">回复此贴</button>
 		</section>
 		<section class="reply" placeholder="支持Markdown语法"
 			v-if="store.at && isShowReplyTopic">
 			<textarea rows="6" v-model="replyContent"></textarea>
-			<button @click="doReply" debounce="3000">确定回复</button>
+			<button class="btn" @click="doReply" debounce="3000">确定回复</button>
 		</section>
 
 	</div>
@@ -136,6 +136,10 @@
 					store.isShowLogin = true;
 					return;
 				}
+
+				if(item.author.loginname == store.uname) {
+					store.alertMsg = '不能给自己点赞!';
+				}
 				$.post(`https:\/\/cnodejs.org/api/v1/reply/${item.id}/ups`, {accesstoken: store.at}, (res) => {
 					if(res.success) {
 						if(res.action === 'up') {
@@ -167,13 +171,13 @@
 				
 			},
 			addReply () {
-				if(this.store.at){
+				if(store.at){
 					for(let i of this.isShowReply.keys()) {
 						this.$set(`isShowReply[${i}]`, false);
 					}
 					this.isShowReplyTopic = true;
 				} else {
-					this.store.isShowLogin = true;
+					store.isShowLogin = true;
 				}
 			}
 		},
@@ -196,7 +200,7 @@ $pad: 10px;
 	background-color: #fff;
 
 	&>*{
-		padding: 10px 0;
+		margin: 10px auto;
 	}
 
 	h2.topic-title{
@@ -328,42 +332,8 @@ $pad: 10px;
 }
 
 
-// [class=]
-// .interact{
-// 	$w: 60px;
-// 	$h: 60px;
-// 	width: $w;
-// 	height: $h;
-// 	float: right;
-
-// 	.icon-repost{
-// 		width: 100%;
-// 		height: 100%;
-// 		font-size: 22px;
-// 		line-height: $h;
-// 		text-align: center;
-// 		float: left;
-
-// 		&.active{
-// 			color: $stdColor;
-// 		}
-// 	}
-// 	.icon-like{
-// 		max-width: $w;
-// 		font-size: 16px;
-// 		line-height: $h;
-// 		float: left;
-// 		@extend %omit;
-
-// 		&.active{
-// 			color: $stdColor;
-// 		}
-// 	}
-// }
-
-
 .reply{
-
+	margin: 20px auto !important;
 	textarea{
 		width: 100%;
 		padding: 10px;
@@ -379,21 +349,6 @@ $pad: 10px;
 			border-color: $stdColor;
 			box-shadow: 0 0 6px $stdColor;
 		}
-	}
-	button{
-		$w: 100px;
-		$h: 30px;
-		width: $w;
-		height: $h;
-		line-height: $h;
-		margin: auto;
-		padding: 0;
-		border: none;
-		display: block;
-		background-color: $stdColor;
-		color: #fff;
-		border-radius: $h/2;
-		font-size: 14px;
 	}
 }
 

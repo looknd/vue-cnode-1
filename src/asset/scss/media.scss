@@ -21,6 +21,7 @@
 		transition: background .3s ease;
 		cursor: pointer;
 	}
+
 	body{
 		background-color: #fff !important;
 	}
@@ -31,6 +32,13 @@
 		border-radius: 15px;
 		.avatar{
 			cursor: pointer;
+		}
+	}
+	.icon-backtop{
+		transition: color .3s ease;
+		cursor: pointer;
+		&:hover{
+			color: darken($stdColor, 10%);
 		}
 	}
 
@@ -66,17 +74,24 @@
 		}
 	}
 	#topic-page{
-		.reply button{
-			transition: all .3s ease;
-			&:hover{
-				background: darken($stdColor, 5%);
-				cursor: pointer;
-			}
-		}
+
 	}
 	.icon-home{
 		@extend %fade;
 	}
+
+	.btn, .lbtn{
+		transition: all .3s ease;
+		&:hover{
+			background: darken($stdColor, 5%);
+			cursor: pointer;
+		}
+	}
+
+	.alert{
+		margin-top: $headerHeight + 100 !important;
+	}
+
 }
 
 
