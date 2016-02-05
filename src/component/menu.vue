@@ -16,9 +16,6 @@
 		</div>
 		
 	</div>
-
-	<cn-login></cn-login>
-	<cn-alert></cn-alert>
 </template>
 
 <script>
@@ -53,10 +50,6 @@
 				}, store.alertTime)
 			}
 		},
-		components: {
-			cnLogin: require('./login.vue'),
-			cnAlert: require('./alert.vue')
-		}
 	}
 </script>
 

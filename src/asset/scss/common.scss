@@ -65,7 +65,6 @@ hr{
 	height: 0;
 }
 
-
 .alert{
 	$w: 280px;
 	width: $w;
@@ -81,10 +80,8 @@ hr{
 	box-sizing: border-box;
 	box-shadow: 0 5px 15px #555;
 	text-align: center;
-}
-
-.alert{
 	color: #f70;
+	z-index: 20000;
 	p{
 		padding: 5px;
 		line-height: 1.7;
@@ -99,6 +96,7 @@ hr{
 	position: fixed;
 	background-color: #000;
 	opacity: 0.7;
+	z-index: 15000;
 }
 
 
@@ -152,7 +150,13 @@ hr{
 }
 
 
-
+.pannel{
+	margin: 10px 0;
+	padding: 10px;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 6px #999;
+}
 
 
 

@@ -40,7 +40,7 @@ new VueRouter()
 	'/msg/:uname': {
 		name: 'msg',
 		component: require('./view/msg.vue'),
-		auth: true
+		// auth: true
 	},
 	'*': {
 		name: 'error',

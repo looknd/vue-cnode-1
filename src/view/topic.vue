@@ -39,16 +39,18 @@
 		</h3>
 
 		<section class="reply-list">
-			<div v-for="(i,item) in topic.replies" class="replay-box">
+			<div v-for="(i,item) in topic.replies" class="reply-box">
 				<div class="status">
 					<img class="avatar" :src="item.author.avatar_url" v-link="{path: '/user/' + item.author.loginname}"/>
 					<i class="icon-repost"
+						v-if="item.author.loginname !== store.uname"
 						:class="{active: isShowReply[i]}"
 						@click="atHim(item, i)"></i>
 					<i class="icon-like"
+						v-if="item.author.loginname !== store.uname"
 						:class="{active: item.ups.indexOf(store.uid) > -1}"
 						@click="vote(item)">{{item.ups.length | formatNum}}</i>
-					<div class="detail" style="width: 100px;">
+					<div class="detail">
 						<div v-text="item.author.loginname"></div>
 						<div v-text="item.create_at | toNow"></div>
 					</div>
@@ -126,6 +128,22 @@
 				}
 				return true;
 			})
+
+			// setTimeout(() => {
+			// 	let $img = $('.markdown-body img');
+			// 	for(let e of $img) {
+			// 		console.log(e)
+			// 		// console.log($img[i])
+			// 	}
+			// 	// console.log($('.markdown-body img').length)
+				
+			// }, 500)
+
+			// for(let i of $('img')) {
+			// 	console.log($('img')[i].offsetWidth)
+			// }
+			// $('img').on('load', function() {
+			// });
 		},
 		methods: {
 			doReply () {
@@ -137,9 +155,9 @@
 					return;
 				}
 
-				if(item.author.loginname == store.uname) {
-					store.alertMsg = '不能给自己点赞!';
-				}
+				// if(item.author.loginname == store.uname) {
+				// 	store.alertMsg = '不能给自己点赞!';
+				// }
 				$.post(`https:\/\/cnodejs.org/api/v1/reply/${item.id}/ups`, {accesstoken: store.at}, (res) => {
 					if(res.success) {
 						if(res.action === 'up') {
@@ -214,7 +232,8 @@ $pad: 10px;
 	}
 }
 .section{
-	margin: 0 #{-$pad};
+	margin-left: #{-$pad} !important;
+	margin-right: #{-$pad} !important;
 	padding: $pad !important;
 }
 
@@ -294,8 +313,8 @@ $pad: 10px;
 .reply-list {
 	width: 100%;
 	// margin-top: $gap*3;
-	&>.replay-box {
-		width: 100%;
+	&>.reply-box {
+		// width: 100%;
 		list-style: none;
 		// border: 1px solid #ccc;
 		background: #f5f5f5;

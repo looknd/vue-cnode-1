@@ -2,7 +2,7 @@
 	<cn-header title="用户主页"></cn-header>
 
 	<div id="user-page">
-		<section class="user-pannel">
+		<section class="pannel">
 			<h3>用户状态</h3>
 			<hr>
 			<div class="status">
@@ -20,35 +20,7 @@
 			</div>
 		</section>
 
-		<section class="user-pannel" v-if="true">
-			<h3>回复消息</h3>
-			<hr>
-			<div class="msg-tab fit">
-				<div>已读信息</div>
-				<div>未读信息</div>
-			</div>
-			<ul>
-				<li v-for="i in 4">
-					<div class="status">
-						<img :src="store.errorImg" class="avatar">
-						<div class="detail">
-							<div>
-								<span>678927</span>
-								<span>fdafda</span>
-							</div>
-							<div>
-								<span>iofdakm</span>
-								<span>fksamfl</span>
-							</div>
-						</div>
-					</div>
-					
-					<div>hahahahahhahahah</div>
-				</li>
-			</ul>
-		</section>
-
-		<section class="user-pannel">
+		<section class="pannel">
 			<h3>最近动态</h3>
 			<hr>
 			<div class="recent-tab fit">
@@ -135,14 +107,6 @@
 	#user-page{
 		padding: $headerHeight + $pad $pad $pad $pad;
 		background: #f0f0f0;
-
-		.user-pannel{
-			margin: 10px 0;
-			padding: 10px;
-			background: #fff;
-			border-radius: 5px;
-			box-shadow: 0 0 6px #999;
-		}
 		
 		.recent-tab, .msg-tab{
 			cursor: default;

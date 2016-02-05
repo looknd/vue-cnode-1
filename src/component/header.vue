@@ -6,6 +6,8 @@
 			<cn-title v-if="isShowTitle()" :title="title"></cn-title>
 		</div>
 	</header>
+	<cn-login></cn-login>
+	<cn-alert></cn-alert>
 </template>
 
 <script>
@@ -21,6 +23,8 @@
 			cnNav: require('./nav.vue'),
 			cnTitle: require('./title.vue'),
 			cnMenu: require('./menu.vue'),
+			cnLogin: require('./login.vue'),
+			cnAlert: require('./alert.vue')
 		},
 		methods: {
 			backHome () {

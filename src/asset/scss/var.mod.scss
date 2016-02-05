@@ -43,3 +43,13 @@ $maxWidth: 800px;
 	box-shadow: 0 5px 15px #555;
 	text-align: center;
 }
+
+%fit{
+	&:after{
+		content: '.';
+		height: 0;
+		display: block;
+		clear: both;
+		visibility: hidden;
+	}
+}

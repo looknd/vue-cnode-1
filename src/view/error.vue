@@ -39,7 +39,7 @@
 	#error-page{
 		width: 100%;
 		height: 100%;
-		position: fixed;
+		// position: fixed;
 		background: #fff;
 		text-align: center;
 		padding-top: 200px;
@@ -48,7 +48,7 @@
 		p{
 			color: #666;
 			line-height: 50px;
-			width: 300px;
+			// width: 300px;
 			&.status{
 				font-size: 18px;
 				i{
