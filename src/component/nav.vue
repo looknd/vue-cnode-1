@@ -24,7 +24,7 @@
 	}
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 	@import '../asset/scss/var.mod.scss';
 	.nav{
 		height: $headerHeight;

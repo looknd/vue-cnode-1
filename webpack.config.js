@@ -7,6 +7,8 @@ var path = require('path'),
 var cdn = '',
 	buildPath = '/dist'
 
+var apiBase = 'https://cnodejs.org/api/v1/';
+
 
 module.exports = {
 	entry: [
@@ -71,10 +73,11 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			ERRORIMG: JSON.stringify('http://img4.imgtn.bdimg.com/it/u=2941524455,810842393&fm=206&gp=0.jpg'),
-			LIST: JSON.stringify('https://cnodejs.org/api/v1/topics'),
-			TOPIC: JSON.stringify('https://cnodejs.org/api/v1/topic'),
-			AT: JSON.stringify('https://cnodejs.org/api/v1/accesstoken'),
-			USER: JSON.stringify('https://cnodejs.org/api/v1/user'),
+			LIST: JSON.stringify(apiBase + 'topics'),
+			TOPIC: JSON.stringify(apiBase + 'topic'),
+			AT: JSON.stringify(apiBase + 'accesstoken'),
+			USER: JSON.stringify(apiBase + 'user'),
+			MSG: JSON.stringify(apiBase + 'messages'),
 			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
 		})
 	],

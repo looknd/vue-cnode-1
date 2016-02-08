@@ -50,6 +50,7 @@
 	.nav{
 		span{
 			@extend %fade;
+			padding: 0 25px !important;
 		}
 	}
 	.menu-btn{

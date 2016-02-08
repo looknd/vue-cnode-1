@@ -55,6 +55,10 @@ export default {
 	replaceLink(s) {
 		//将后台返回的a标签中的 /user/:loginname 替换为 /#!/user/:loginname
 		return s.replace(/<a.+?>[^@]*(@)([\w\-]+?)\s*<\/a>/gi, '<a href="/#!/user/$2">$1$2</a>')
+	},
+
+	stripAtLink(s) {
+		return s.replace(/<a.+?>[^@]*(@)([\w\-]+?)\s*<\/a>/gi, '$1$2')
 	}
 
 

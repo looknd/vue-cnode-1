@@ -1,7 +1,10 @@
 <template>
 	<div class="alert-matte" @click="hideDialog" v-if="store.isShowLogin"></div>
 	<div class="login-dialog alert" v-if="store.isShowLogin" @touchmove.stop>
-		<input type="text" placeholder="AccessToken" v-model="accessToken" @focus="loginStatus = ''">
+		<input type="text" placeholder="AccessToken"
+			v-model="accessToken"
+			@keyup.enter="login"
+			@focus="loginStatus = ''">
 		<button class="lbtn" @click="login">登 录</button>
 		<div v-if="loginStatus" v-text="loginStatus"></div>
 	</div>
@@ -72,7 +75,7 @@
 	}
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 	@import '../asset/scss/var.mod.scss';
 	.login-dialog{		
 		input{
