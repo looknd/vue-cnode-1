@@ -13,7 +13,9 @@ Vue.use(VueResource).use(VueRouter);
 Object.keys(filter).forEach(k => Vue.filter(k, filter[k]));
 
 
-new VueRouter()
+new VueRouter({
+	// saveScrollPosition: false
+})
 .map({
 	'/': {
 		name: 'home',
