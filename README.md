@@ -8,8 +8,13 @@
 
 技术上部分借鉴了[Vue-cnodejs](https://github.com/shinygang/Vue-cnodejs) 和 [vue-hackernews](https://github.com/vuejs/vue-hackernews). ```代码完全重写, UI完全重做```, 无任何复制粘贴. webpack插件配置部分借鉴[webpack官网](http://webpack.github.io/docs/webpack-dev-server.html). 并且对 **PC** 和 **移动端** 做了响应式设计. 
 
-####此项目仅仅是纯练习项目.
+####此项目是纯练习项目.
 
 
 ###协议
 MIT
+
+
+
+======
+This vue-node is a html5 webapp which is accomplished in Vue.js and packed in Webpack. In back-end, using the APIs supplied by [cnode](https://cnodejs.org/). Set the accesstoken then you can login.
