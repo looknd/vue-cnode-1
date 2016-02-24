@@ -92,7 +92,7 @@
 
 		.title{
 			width: 100%;
-			border: 1px solid #aaa;
+			border: 1px solid #ccc;
 			border-radius: 5px;
 			line-height: 18px;
 			padding: ($h - 18)/2;
@@ -102,7 +102,7 @@
 		.content{
 			width: 100%;
 			line-height: 18px;
-			border: 1px solid #aaa;
+			border: 1px solid #ccc;
 			border-radius: 5px;
 			padding: 5px;
 
