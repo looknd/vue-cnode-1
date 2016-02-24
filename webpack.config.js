@@ -39,7 +39,7 @@ module.exports = {
 			// loader: 'file?name=images/[hash].[ext]'
 		}, {
 			test: /\.(eot|ttf|woff(2)?|svg)(\?[a-z0-9]+)?$/,
-			loader: 'url?limit=10000&minetype=application/font-woff'
+			loader: 'url?limit=100000&minetype=application/font-woff'
 		}, {
 			test: /\.json$/,
 			loader: 'json'

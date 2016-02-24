@@ -10,7 +10,7 @@ let gulp = require('gulp'),
 var config = require('./webpack.config');
 
 gulp.task('clean', function(cb) {
-	del(['./dist/*.js', './dist/*.css', './dist/*.map']).then( paths => {
+	del(['./dist/*.*']).then( paths => {
 		cb();
 	})
 })
