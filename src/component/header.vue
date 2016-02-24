@@ -31,7 +31,7 @@
 				this.$route.go({name: 'home'})
 			},
 			isShowTitle () {
-				return ['user', 'msg'].indexOf(this.store.route.name) > -1; 
+				return ['user', 'msg', 'new'].indexOf(this.store.route.name) > -1; 
 			}
 		}
 	}
