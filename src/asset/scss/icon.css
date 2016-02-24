@@ -258,4 +258,7 @@
 .icon-back:before {
 	content: "\e909";
 }
+.icon-new:before {
+    content: "\e94e";
+}
 

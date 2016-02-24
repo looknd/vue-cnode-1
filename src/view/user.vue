@@ -14,7 +14,7 @@
 					</div>
 					<div>
 						<span>{{createAt | toNow}}注册</span>
-						<span><a class="icon-github" href="https://github.com/{{ghname}}"> {{ghname}}</a></span>
+						<span><a class="icon-github" target="_blank" href="https://github.com/{{ghname}}"> {{ghname}}</a></span>
 					</div>
 				</div>
 			</div>

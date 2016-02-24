@@ -44,14 +44,15 @@ new VueRouter({
 		component: require('./view/msg.vue'),
 		auth: true
 	},
+	'/new': {
+		name: 'new',
+		component: require('./view/new.vue'),
+		auth: true
+	},
 	'*': {
 		name: 'error',
 		component: require('./view/error.vue')
 	},
-	// '/add': {
-	// 	name: 'add',
-	// 	component: require('./view/add.vue')
-	// },
 
 })
 .beforeEach(transition => {

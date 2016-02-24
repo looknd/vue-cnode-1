@@ -10,6 +10,7 @@
 
 			<div class="icon-login" v-if="!store.at" @click="showLogin"> 登录</div>
 			<div class="icon-msg" v-if="store.at" v-link="{path: '/msg/' + store.uname}"> 消息</div>
+			<div class="icon-new" v-if="store.at" v-link="{path: '/new'}"> 发布</div>
 			<div class="icon-logout" v-if="store.at" @click="logout"> 退出</div>
 			<hr>
 			<div class="icon-info" v-link="{name: 'about'}"> 关于</div>
