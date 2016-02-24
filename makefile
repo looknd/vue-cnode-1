@@ -27,5 +27,5 @@ deploy: production
 	tar -czvf static.zip index.html dist/*.*
 	scp static.zip $(flfhost):$(path)
 	-rm static.zip
-	ssh -t $(flfhost) "cd $(path); tar -xzvf static.zip && rm -f static.zip"
+	ssh -t $(flfhost) "cd $(path) && tar -xzvf static.zip && rm -f static.zip"
 
