@@ -96,6 +96,8 @@
 			border-radius: 5px;
 			line-height: 18px;
 			padding: ($h - 18)/2;
+
+			@extend %focus;
 		}
 		.content{
 			width: 100%;
@@ -103,7 +105,9 @@
 			border: 1px solid #aaa;
 			border-radius: 5px;
 			padding: 5px;
-		}	
+
+			@extend %focus;
+		}
 
 		.type-box{
 			height: $h;

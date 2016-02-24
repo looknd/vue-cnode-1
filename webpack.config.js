@@ -9,6 +9,30 @@ var cdn = '',
 
 var apiBase = 'https://cnodejs.org/api/v1/';
 
+var plugins = [
+		// new webpack.optimize.CommonsChunkPlugin('common.js'),
+		new ExtractText('style.css', {
+			allChunks: true,
+			disable: false
+		}),
+		new webpack.ProvidePlugin({
+			$: 'webpack-zepto'
+		}),
+		new webpack.DefinePlugin({
+			ERRORIMG: JSON.stringify('http://img4.imgtn.bdimg.com/it/u=2941524455,810842393&fm=206&gp=0.jpg'),
+			LIST: JSON.stringify(apiBase + 'topics'),
+			NEW: JSON.stringify(apiBase + 'topocs'),
+			TOPIC: JSON.stringify(apiBase + 'topic'),
+			AT: JSON.stringify(apiBase + 'accesstoken'),
+			USER: JSON.stringify(apiBase + 'user'),
+			MSG: JSON.stringify(apiBase + 'messages'),
+			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
+		})
+	]
+
+if(process.env.TARGET === 'production') {
+	plugins.push(new webpack.optimize.UglifyJsPlugin());
+}
 
 module.exports = {
 	entry: [
@@ -62,26 +86,7 @@ module.exports = {
 	postcss: function() {
 		return [require('autoprefixer')];
 	},
-	plugins: [
-		// new webpack.optimize.CommonsChunkPlugin('common.js'),
-		new ExtractText('style.css', {
-			allChunks: true,
-			disable: false
-		}),
-		new webpack.ProvidePlugin({
-			$: 'webpack-zepto'
-		}),
-		new webpack.DefinePlugin({
-			ERRORIMG: JSON.stringify('http://img4.imgtn.bdimg.com/it/u=2941524455,810842393&fm=206&gp=0.jpg'),
-			LIST: JSON.stringify(apiBase + 'topics'),
-			NEW: JSON.stringify(apiBase + 'topocs'),
-			TOPIC: JSON.stringify(apiBase + 'topic'),
-			AT: JSON.stringify(apiBase + 'accesstoken'),
-			USER: JSON.stringify(apiBase + 'user'),
-			MSG: JSON.stringify(apiBase + 'messages'),
-			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
-		})
-	],
+	plugins: plugins,
 	resolve: {
 		extension: ['', '.js'],
 

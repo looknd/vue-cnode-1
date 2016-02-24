@@ -53,3 +53,12 @@ $maxWidth: 800px;
 		visibility: hidden;
 	}
 }
+
+
+%focus{
+	transition: all .3s ease;
+	&:focus{
+		border-color: $stdColor;
+		box-shadow: 0 0 6px $stdColor;
+	}
+}
