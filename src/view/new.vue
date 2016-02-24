@@ -4,7 +4,7 @@
 	<div id="new-page">
 		<section class="pannel">
 			<div class="type-box">
-				<span>选择板块: </span>
+				<span>选择板块:</span>
 				<select class="type" v-model="type">
 					<option value="">请选择</option>
 					<option value="share">分享</option>
@@ -115,6 +115,7 @@
 
 			span{
 				font-size: 12px;
+				margin-right: 10px;
 			}
 
 			select{
