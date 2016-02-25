@@ -21,4 +21,4 @@ MIT
 
 
 ======
-This vue-node is a html5 webapp which is accomplished in Vue.js and packed in Webpack. In back-end, using the APIs supplied by [cnode](https://cnodejs.org/). Set the accesstoken then you can login.
+This vue-node is a html5 webapp which is accomplished with Vue.js and packed with Webpack. In back-end, using the APIs supplied by [cnode](https://cnodejs.org/). Set the accesstoken then you can login.
