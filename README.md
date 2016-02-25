@@ -2,7 +2,7 @@
 
 =====
 
-[demo](https://flfwzgl.github.io/vue-cnode)
+[demo](http://project.fanlinfeng.com/vue-cnode)
 
 =====
 
