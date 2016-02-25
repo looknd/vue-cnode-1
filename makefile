@@ -1,6 +1,7 @@
 flfip=115.28.83.193
 flfhost=root@$(flfip)
 path=server/project/vue-cnode
+coding=git@git.coding.net:flfwzgl/cnode.git
 
 ifeq ($(m),)
 	m=up
@@ -23,6 +24,7 @@ server:
 deploy: production
 	git add -A &&\
 	git commit -m $(m);\
+	git push $(coding) master -f
 
 	tar -czvf static.zip index.html dist/*.*
 	scp static.zip $(flfhost):$(path)

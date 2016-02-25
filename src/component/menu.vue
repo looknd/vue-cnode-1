@@ -4,7 +4,7 @@
 			</div>
 		<div class="menu" v-show="store.isShowMenu">
 			<div class="user" v-if="store.at" v-link="{path: '/user/' + store.uname}">
-				<img :src="store.avatarUrl" onerror="this.src='{{store.errorImg}}'" v-if="store.avatarUrl" class="avatar">
+				<img :src="store.avatarUrl" v-if="store.avatarUrl" class="avatar">
 				{{store.uname}}
 			</div>
 

@@ -22,6 +22,11 @@ body {
 	// font-family: 'PingHei', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'sans-serif';
 }
 
+img{
+	background: url(../img/avatar.jpg) no-repeat;
+	background-size: 50px 50px;
+}
+
 .wait{
 	$d: 40px;
 	width: $d !important;

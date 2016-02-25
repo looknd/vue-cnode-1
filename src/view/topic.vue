@@ -6,7 +6,7 @@
 
 		<div class="section">
 			<div class="status">
-				<img class="avatar" onerror="this.src='{{errorImg}}'"
+				<img class="avatar"
 					:src="topic.author.avatar_url"  
 					v-link="{path: '/user/' + topic.author.loginname}">
 				<div class="detail">

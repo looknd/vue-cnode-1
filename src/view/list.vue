@@ -6,7 +6,7 @@
 				<h3 v-text="e.title" 
 					:class="e.tab | getTabClass e.good e.top"></h3>
 				<div class="status">
-					<img :src="e.author.avatar_url" onerror="this.src='{{store.errorImg}}'" class="avatar">
+					<img :src="e.author.avatar_url" class="avatar">
 					<div class="detail">
 						<div>
 							<span>

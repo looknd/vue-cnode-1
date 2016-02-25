@@ -6,7 +6,7 @@
 			<h3>用户状态</h3>
 			<hr>
 			<div class="status">
-				<img :src="avatarUrl" onerror="this.src='{{store.errorImg}}'" class="avatar">
+				<img :src="avatarUrl" class="avatar">
 				<div class="detail">
 					<div>
 						<span>积分: {{score}}</span>
@@ -29,7 +29,7 @@
 			</div>
 			<ul v-show="tab === 'reply'">
 				<li class="status" v-for="(i,e) in reply" v-link="{path: '/topic/' + e.id}">
-					<img :src="e.author.avatar_url" onerror="this.src='{{store.errorImg}}'" class="avatar">
+					<img :src="e.author.avatar_url" class="avatar">
 					<div class="detail">
 						<div v-text="e.title"></div>
 						<div>
@@ -41,7 +41,7 @@
 			</ul>
 			<ul v-show="tab === 'topic'">
 				<li class="status" v-for="(i,e) in topic" v-link="{path: '/topic/' + e.id}">
-					<img :src="e.author.avatar_url" onerror="this.src='{{store.errorImg}}'" class="avatar">
+					<img :src="e.author.avatar_url" class="avatar">
 					<div class="detail">
 						<div v-text="e.title"></div>
 						<div>
