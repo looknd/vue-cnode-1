@@ -74,6 +74,9 @@ $pad: 10px;
 			color: #06a;
 			text-decoration: underline;
 		}
+		strong{
+			color: $stdColor;
+		}
 	}
 }
 </style>
