@@ -21,7 +21,7 @@ production:
 server:
 	node server.js
 
-deploy: production
+all: production
 	git add -A &&\
 	git commit -m $(m);\
 	git push $(coding) master -f

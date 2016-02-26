@@ -2,6 +2,7 @@
 	<cn-header></cn-header>
 	<div id="about-page">
 		<base target="_blank">
+		<div class="logo"></div>
 		<h3>关于CNode社区</h3>
 		<hr>
 		<p>
@@ -60,6 +61,15 @@ $pad: 10px;
 	padding: $headerHeight + 10 $pad $pad $pad;
 	background: #fff;
 
+
+	.logo{
+		$edge: 100px;
+		width: $edge;
+		height: $edge;
+		background: url(../asset/img/logo.png) no-repeat;
+		background-size: $edge $edge;
+		margin: 10px auto;
+	}
 	hr{
 		margin: 10px 0;
 		border-bottom-color: #ddd;
