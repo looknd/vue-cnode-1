@@ -26,7 +26,7 @@ deploy: production
 	git commit -m $(m);\
 	git push $(coding) master -f
 
-	tar -czvf static.zip index.html dist/*.*
+	tar -czvf static.zip index.html favicon.png dist/*.*
 	scp static.zip $(flfhost):$(path)
 	-rm static.zip
 	ssh -t $(flfhost) "cd $(path) && tar -xzvf static.zip && rm -f static.zip"
