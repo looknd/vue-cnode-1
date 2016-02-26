@@ -47,6 +47,9 @@
 			}
 		},
 		route: {
+			// canReuse () {
+			// 	//只要注册此方法, 不明确返回true, 都认为组件不可重用.
+			// },
 			data ({to}) {
 				let $doc = $(document),
 					$win = $(window)
