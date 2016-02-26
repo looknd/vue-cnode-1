@@ -69,6 +69,10 @@ $pad: 10px;
 		background: url(../asset/img/logo.png) no-repeat;
 		background-size: $edge $edge;
 		margin: 10px auto;
+		transition: all 0.7s ease;
+		&:hover{
+			transform: rotate(360deg);
+		}
 	}
 	hr{
 		margin: 10px 0;
