@@ -1,6 +1,6 @@
 <template>
 	<cn-header></cn-header>
-
+	<base target="_blank">
 	<div id="topic-page" v-if="topic.title">
 		<h2 class="topic-title" v-text="topic.title"></h2>
 

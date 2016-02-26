@@ -95,8 +95,9 @@
 		}
 
 		.topic-title{
-			background: #eee;
-			border-radius: 5px;
+			background: #f0f0f0;
+			border-radius: 0 5px 5px 0;
+			border-left: 4px solid $stdColor;
 			padding: 5px;
 			cursor: pointer;
 	
