@@ -18,10 +18,10 @@ clean:
 	rm -rf $(dist)/*
 
 dev: clean
-	TARGET=development webpack
+	NODE_ENV=development webpack
 
 production: clean
-	TARGET=production webpack
+	NODE_ENV=production webpack
 
 server:
 	node server.js
