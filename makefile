@@ -1,4 +1,4 @@
-flfip=115.28.83.193
+flfip=192.168.1.111
 flfhost=root@$(flfip)
 path=server/project/vue-cnode
 coding=git@git.coding.net:flfwzgl/cnode.git
@@ -9,7 +9,7 @@ ifeq ($(m),)
 	m=update
 endif
 
-.PHONY : clean dev production bak server
+.PHONY : clean dev production bak deploy server
 
 
 main: dev server
@@ -31,9 +31,11 @@ bak:
 	git commit -m '$(m)';\
 	git push $(coding) master -f
 
-all: production bak
+deploy:
 	tar -czvf static.zip index.html favicon.png $(dist)/*
 	scp static.zip $(flfhost):$(path)
 	-rm static.zip
 	ssh -t $(flfhost) "cd $(path) && tar -xzvf static.zip && rm -f static.zip"
+
+all: production bak deploy
 
