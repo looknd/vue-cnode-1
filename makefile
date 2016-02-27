@@ -3,7 +3,7 @@ flfhost=root@$(flfip)
 path=server/project/vue-cnode
 coding=git@git.coding.net:flfwzgl/cnode.git
 
-dist=./dist/
+dist=./dist
 
 ifeq ($(m),)
 	m=up
