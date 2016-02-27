@@ -6,7 +6,7 @@ coding=git@git.coding.net:flfwzgl/cnode.git
 dist=./dist
 
 ifeq ($(m),)
-	m=up
+	m=update
 endif
 
 .PHONY : clean dev production server
@@ -28,7 +28,7 @@ server:
 
 all: production
 	git add -A &&\
-	git commit -m $(m);\
+	git commit -m '$(m)';\
 	git push $(coding) master -f
 
 	tar -czvf static.zip index.html favicon.png $(dist)/*

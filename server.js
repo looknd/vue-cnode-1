@@ -1,8 +1,8 @@
 'use strict'
 
 var webpack = require('webpack'),
-	WebpackDevServer = require('webpack-dev-server'),
-	config = require('./webpack.config')
+		WebpackDevServer = require('webpack-dev-server'),
+		config = require('./webpack.config')
 
 
 config.entry.unshift('webpack-dev-server/client?http://localhost:9000', 'webpack/hot/dev-server');
