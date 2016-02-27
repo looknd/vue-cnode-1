@@ -9,7 +9,7 @@ ifeq ($(m),)
 	m=update
 endif
 
-.PHONY : clean dev production server
+.PHONY : clean dev production bak server
 
 
 main: dev server
@@ -26,11 +26,12 @@ production: clean
 server:
 	node server.js
 
-all: production
+bak:
 	git add -A &&\
 	git commit -m '$(m)';\
 	git push $(coding) master -f
 
+all: production bak
 	tar -czvf static.zip index.html favicon.png $(dist)/*
 	scp static.zip $(flfhost):$(path)
 	-rm static.zip
