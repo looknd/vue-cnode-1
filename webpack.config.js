@@ -5,7 +5,7 @@ var path = require('path'),
 	ExtractText = require('extract-text-webpack-plugin');
 
 var cdn = '',
-	buildPath = '/dist'
+		buildPath = '/dist'
 
 var apiBase = 'https://cnodejs.org/api/v1/';
 

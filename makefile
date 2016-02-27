@@ -3,20 +3,25 @@ flfhost=root@$(flfip)
 path=server/project/vue-cnode
 coding=git@git.coding.net:flfwzgl/cnode.git
 
+dist=./dist/
+
 ifeq ($(m),)
 	m=up
 endif
 
-.PHONY : dist production server
+.PHONY : clean dev production server
 
 
-main: dist server
+main: dev server
 
-dist:
-	TARGET=development gulp
+clean:
+	rm -rf $(dist)/*
 
-production:
-	TARGET=production gulp
+dev: clean
+	TARGET=development webpack
+
+production: clean
+	TARGET=production webpack
 
 server:
 	node server.js
@@ -26,7 +31,7 @@ all: production
 	git commit -m $(m);\
 	git push $(coding) master -f
 
-	tar -czvf static.zip index.html favicon.png dist/*.*
+	tar -czvf static.zip index.html favicon.png $(dist)/*
 	scp static.zip $(flfhost):$(path)
 	-rm static.zip
 	ssh -t $(flfhost) "cd $(path) && tar -xzvf static.zip && rm -f static.zip"
