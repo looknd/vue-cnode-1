@@ -1,8 +1,8 @@
 'use strict'
 
 var path = require('path'),
-	webpack = require('webpack'),
-	ExtractText = require('extract-text-webpack-plugin');
+		webpack = require('webpack'),
+		ExtractText = require('extract-text-webpack-plugin');
 
 var cdn = '',
 		buildPath = '/dist'
