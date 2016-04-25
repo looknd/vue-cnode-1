@@ -2,7 +2,7 @@
 
 =====
 
-[demo](http://demo.fanlinfeng.com/vue-cnode)
+[demo](http://demo.fanlinfeng.com/repo/vue-cnode)
 
 =====
 
