@@ -3,10 +3,6 @@
 # path=server/project/vue-cnode
 # coding=git@git.coding.net:flfwzgl/cnode.git
 
-ifeq ($(p),)
-	p=8888
-endif
-
 ifeq ($(m),)
 	m=update
 endif
@@ -25,10 +21,10 @@ production:
 
 
 
-# bak:
-# 	git add -A &&\
-# 	git commit -m '$(m)';\
-# 	git push $(coding) master -f
+bak:
+	git add . &&\
+	git commit -m '$(m)';\
+	git push coding master -f
 
 # deploy:
 # 	tar -czvf static.zip index.html favicon.png $(dist)/*

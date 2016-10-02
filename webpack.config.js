@@ -29,7 +29,7 @@ let plugins = [
 			title: 'CNode社区',
 			inject: 'body',
 			minify: {
-				removeComments: 		pro,
+				removeComments:     pro,
 				collapseWhitespace: pro
 			}
 		}),
@@ -38,13 +38,13 @@ let plugins = [
 		}),
 		new webpack.DefinePlugin({
 			ERRORIMG: JSON.stringify('http://img4.imgtn.bdimg.com/it/u=2941524455,810842393&fm=206&gp=0.jpg'),
-			LIST: 		JSON.stringify(apiBase + 'topics'),
-			NEW: 			JSON.stringify(apiBase + 'topocs'),
-			TOPIC: 		JSON.stringify(apiBase + 'topic'),
-			AT: 			JSON.stringify(apiBase + 'accesstoken'),
-			USER: 		JSON.stringify(apiBase + 'user'),
-			MSG: 			JSON.stringify(apiBase + 'messages'),
-			TAB: 			JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
+			LIST:     JSON.stringify(apiBase + 'topics'),
+			NEW:      JSON.stringify(apiBase + 'topocs'),
+			TOPIC:    JSON.stringify(apiBase + 'topic'),
+			AT:       JSON.stringify(apiBase + 'accesstoken'),
+			USER:     JSON.stringify(apiBase + 'user'),
+			MSG:      JSON.stringify(apiBase + 'messages'),
+			TAB:      JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
 		})
 	]
 
@@ -64,7 +64,7 @@ module.exports = {
 	],
 	output: {
 		filename: 'app.js',
-		path: path.join(__dirname, 'dist'),		//打包输出路径
+		path: path.join(__dirname, 'dist'),   //打包输出路径
 		publicPath: '/'
 	},
 	module: {
@@ -98,7 +98,7 @@ module.exports = {
 	},
 	vue: {
 		// loaders: {
-		// 	css: ExtractText.extract('css'),
+		//  css: ExtractText.extract('css'),
 		// }
 	},
 
