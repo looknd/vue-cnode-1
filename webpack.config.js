@@ -17,7 +17,7 @@ let plugins = [
 		new Copy([{
 			from: 'src/asset/img/*'
 		}]),
-		new Clean(['dist']),
+		new Clean(['dist']),		//构建之前删除目录相对于__dirname
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.NoErrorsPlugin(),
 		new webpack.optimize.CommonsChunkPlugin('common.js'),

@@ -14,6 +14,7 @@
 
 ####此项目是纯练习项目.
 
+* ```npm install```
 * 开发模式```make dev```
 * 生产环境```make production```
 
