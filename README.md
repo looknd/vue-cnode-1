@@ -14,11 +14,8 @@
 
 ####此项目是纯练习项目.
 
+* 开发模式```make dev```
+* 生产环境```make production```
 
 ###协议
 MIT
-
-
-
-======
-This vue-node is a html5 webapp which is accomplished with Vue.js and packed with Webpack. In back-end, using the APIs supplied by [cnode](https://cnodejs.org/). Set the accesstoken then you can login.

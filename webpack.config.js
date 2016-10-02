@@ -1,37 +1,61 @@
 'use strict'
 
-var path = require('path'),
+let path = require('path'),
 		webpack = require('webpack'),
-		ExtractText = require('extract-text-webpack-plugin');
+		ExtractText = require('extract-text-webpack-plugin'),
+		HTMLWebpack = require('html-webpack-plugin'),
+		Clean = require('clean-webpack-plugin'),
+		Copy = require('copy-webpack-plugin')
 
-var cdn = '',
-		buildPath = '/dist'
+let target = process.env.TARGET;
+let dev = target === 'dev';
+let pro = target === 'production';
 
-var apiBase = 'https://cnodejs.org/api/v1/';
+let apiBase = 'https://cnodejs.org/api/v1/';
 
-var plugins = [
-		// new webpack.optimize.CommonsChunkPlugin('common.js'),
-		new ExtractText('style.css', {
-			allChunks: true,
-			disable: false
+let plugins = [
+		new Copy([{
+			from: 'src/asset/img/*'
+		}]),
+		new Clean(['dist']),
+		new webpack.optimize.OccurrenceOrderPlugin(),
+		new webpack.NoErrorsPlugin(),
+		new webpack.optimize.CommonsChunkPlugin('common.js'),
+		new ExtractText('style.css'),
+		new HTMLWebpack({
+			filename: 'index.html',
+			template: './index.ejs',
+			hash: true,
+			title: 'CNode社区',
+			inject: 'body',
+			minify: {
+				removeComments: 		pro,
+				collapseWhitespace: pro
+			}
 		}),
 		new webpack.ProvidePlugin({
 			$: 'webpack-zepto'
 		}),
 		new webpack.DefinePlugin({
 			ERRORIMG: JSON.stringify('http://img4.imgtn.bdimg.com/it/u=2941524455,810842393&fm=206&gp=0.jpg'),
-			LIST: JSON.stringify(apiBase + 'topics'),
-			NEW: JSON.stringify(apiBase + 'topocs'),
-			TOPIC: JSON.stringify(apiBase + 'topic'),
-			AT: JSON.stringify(apiBase + 'accesstoken'),
-			USER: JSON.stringify(apiBase + 'user'),
-			MSG: JSON.stringify(apiBase + 'messages'),
-			TAB: JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
+			LIST: 		JSON.stringify(apiBase + 'topics'),
+			NEW: 			JSON.stringify(apiBase + 'topocs'),
+			TOPIC: 		JSON.stringify(apiBase + 'topic'),
+			AT: 			JSON.stringify(apiBase + 'accesstoken'),
+			USER: 		JSON.stringify(apiBase + 'user'),
+			MSG: 			JSON.stringify(apiBase + 'messages'),
+			TAB: 			JSON.stringify(['all', 'good', 'share', 'ask', 'job']),
 		})
 	]
 
-if(process.env.NODE_ENV === 'production') {
-	plugins.push(new webpack.optimize.UglifyJsPlugin());
+if(pro) {
+	plugins.push(
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			}
+		})
+	)
 }
 
 module.exports = {
@@ -39,9 +63,9 @@ module.exports = {
 		'./src/main.js'
 	],
 	output: {
-		path: path.join(__dirname, buildPath),
-		filename: 'build.js',
-		publicPath: path.join(cdn, buildPath)
+		filename: 'app.js',
+		path: path.join(__dirname, 'dist'),		//打包输出路径
+		publicPath: '/'
 	},
 	module: {
 		loaders: [{
@@ -49,10 +73,10 @@ module.exports = {
 			loader: 'vue',
 		}, {
 			test: /\.css$/,
-			loader: ExtractText.extract('style', ['css?sourceMap', 'postcss'])
+			loader: ExtractText.extract('css?sourceMap!postcss')
 		}, {
 			test: /\.scss$/,
-			loader: ExtractText.extract('style', ['css?sourceMap', 'sass', 'postcss'])
+			loader: ExtractText.extract('css?sourceMap!postcss!sass')
 		}, {
 			test: /\.js$/,
 			exclude: /node_modules|dist/,
@@ -73,20 +97,23 @@ module.exports = {
 		}]
 	},
 	vue: {
-		loaders: {
-			css: ExtractText.extract('css'),
-		}
+		// loaders: {
+		// 	css: ExtractText.extract('css'),
+		// }
 	},
 
-	//配置插件的插件
-	babel: {
-		presets: ['es2015'],
-		plugins: ['transform-runtime']
+	devServer: {
+		host: '0.0.0.0',
+		port: 8888,
+		contentBase: path.join(__dirname, 'src')
 	},
+
 	postcss: function() {
 		return [require('autoprefixer')];
 	},
+
 	plugins: plugins,
+
 	resolve: {
 		extension: ['', '.js'],
 
